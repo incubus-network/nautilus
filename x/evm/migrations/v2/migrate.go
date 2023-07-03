@@ -3,7 +3,7 @@ package v2
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 // MigrateStore sets the default AllowUnprotectedTxs parameter.

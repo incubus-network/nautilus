@@ -12,10 +12,10 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 
-	ethermint "github.com/incubus-network/ethermint/types"
-	evmkeeper "github.com/incubus-network/ethermint/x/evm/keeper"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	fury "github.com/incubus-network/fury/types"
+	evmkeeper "github.com/incubus-network/fury/x/evm/keeper"
+	"github.com/incubus-network/fury/x/evm/statedb"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
@@ -234,7 +234,7 @@ func (egcd EthGasConsumeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simula
 	ctx.EventManager().EmitEvents(events)
 
 	// TODO: deprecate after https://github.com/cosmos/cosmos-sdk/issues/9514  is fixed on SDK
-	blockGasLimit := ethermint.BlockGasLimit(ctx)
+	blockGasLimit := fury.BlockGasLimit(ctx)
 
 	// NOTE: safety check
 	if blockGasLimit > 0 {
@@ -246,7 +246,7 @@ func (egcd EthGasConsumeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simula
 
 	// Set ctx.GasMeter with a limit of GasWanted (gasLimit)
 	gasConsumed := ctx.GasMeter().GasConsumed()
-	ctx = ctx.WithGasMeter(ethermint.NewInfiniteGasMeterWithLimit(gasWanted))
+	ctx = ctx.WithGasMeter(fury.NewInfiniteGasMeterWithLimit(gasWanted))
 	ctx.GasMeter().ConsumeGas(gasConsumed, "copy gas consumed")
 
 	newCtx := ctx.WithPriority(minPriority)

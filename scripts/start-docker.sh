@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo "prepare genesis: Run validate-genesis to ensure everything worked and that the genesis file is setup correctly"
-./fury validate-genesis --home /ethermint
+./fury validate-genesis --home /fury
 
-echo "starting ethermint node $ID in background ..."
+echo "starting fury node $ID in background ..."
 ./fury start \
---home /ethermint \
+--home /fury \
 --keyring-backend test
 
-echo "started ethermint node"
+echo "started fury node"
 tail -f /dev/null

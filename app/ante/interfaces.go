@@ -9,10 +9,10 @@ import (
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/core/vm"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
-	evm "github.com/incubus-network/ethermint/x/evm/vm"
-	feemarkettypes "github.com/incubus-network/ethermint/x/feemarket/types"
+	"github.com/incubus-network/fury/x/evm/statedb"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	evm "github.com/incubus-network/fury/x/evm/vm"
+	feemarkettypes "github.com/incubus-network/fury/x/feemarket/types"
 )
 
 // DynamicFeeEVMKeeper is a subset of EVMKeeper interface that supports dynamic fee checker

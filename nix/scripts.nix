@@ -1,11 +1,11 @@
 { pkgs
 , config
-, ethermint ? (import ../. { inherit pkgs; })
+, fury ? (import ../. { inherit pkgs; })
 }: rec {
-  start-ethermint = pkgs.writeShellScriptBin "start-ethermint" ''
+  start-fury = pkgs.writeShellScriptBin "start-fury" ''
     # rely on environment to provide fury
     export PATH=${pkgs.test-env}/bin:$PATH
-    ${../scripts/start-ethermint.sh} ${config.ethermint-config} ${config.dotenv} $@
+    ${../scripts/start-fury.sh} ${config.fury-config} ${config.dotenv} $@
   '';
   start-geth = pkgs.writeShellScriptBin "start-geth" ''
     export PATH=${pkgs.test-env}/bin:${pkgs.go-ethereum}/bin:$PATH
@@ -14,6 +14,6 @@
   '';
   start-scripts = pkgs.symlinkJoin {
     name = "start-scripts";
-    paths = [ start-ethermint start-geth ];
+    paths = [ start-fury start-geth ];
   };
 }

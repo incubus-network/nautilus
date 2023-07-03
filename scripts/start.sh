@@ -61,9 +61,9 @@ if [[ ! "$DATA_CLI_DIR" ]]; then
     exit 1
 fi
 
-# Compile ethermint
-echo "compiling ethermint"
-make build-ethermint
+# Compile fury
+echo "compiling fury"
+make build-fury
 
 # PID array declaration
 arr=()
@@ -74,7 +74,7 @@ arrcli=()
 init_func() {
     echo "create and add new keys"
     "$PWD"/build/fury keys add $KEY"$i" --home "$DATA_DIR$i" --no-backup --chain-id $CHAINID --algo "eth_secp256k1" --keyring-backend test
-    echo "init Ethermint with moniker=$MONIKER and chain-id=$CHAINID"
+    echo "init Fury with moniker=$MONIKER and chain-id=$CHAINID"
     "$PWD"/build/fury init $MONIKER --chain-id $CHAINID --home "$DATA_DIR$i"
     echo "prepare genesis: Allocate genesis accounts"
     "$PWD"/build/fury add-genesis-account \
@@ -89,17 +89,17 @@ init_func() {
 }
 
 start_func() {
-    echo "starting ethermint node $i in background ..."
+    echo "starting fury node $i in background ..."
     "$PWD"/build/fury start --pruning=nothing --rpc.unsafe \
     --p2p.laddr tcp://$IP_ADDR:$NODE_P2P_PORT"$i" --address tcp://$IP_ADDR:$NODE_PORT"$i" --rpc.laddr tcp://$IP_ADDR:$NODE_RPC_PORT"$i" \
     --json-rpc.address=$IP_ADDR:$RPC_PORT"$i" \
     --keyring-backend test --home "$DATA_DIR$i" \
     >"$DATA_DIR"/node"$i".log 2>&1 & disown
     
-    ETHERMINT_PID=$!
-    echo "started ethermint node, pid=$ETHERMINT_PID"
+    FURY_PID=$!
+    echo "started fury node, pid=$FURY_PID"
     # add PID to array
-    arr+=("$ETHERMINT_PID")
+    arr+=("$FURY_PID")
 }
 
 # Run node with static blockchain database
@@ -123,7 +123,7 @@ if [[ -z $TEST || $TEST == "rpc" ]]; then
     
     for i in $(seq 1 "$TEST_QTD"); do
         HOST_RPC=http://$IP_ADDR:$RPC_PORT"$i"
-        echo "going to test ethermint node $HOST_RPC ..."
+        echo "going to test fury node $HOST_RPC ..."
         MODE=$MODE HOST=$HOST_RPC go test ./tests/e2e/... -timeout=300s -v -short
         MODE=$MODE HOST=$HOST_RPC go test ./tests/rpc/... -timeout=300s -v -short
 
@@ -133,12 +133,12 @@ if [[ -z $TEST || $TEST == "rpc" ]]; then
 fi
 
 stop_func() {
-    ETHERMINT_PID=$i
-    echo "shutting down node, pid=$ETHERMINT_PID ..."
+    FURY_PID=$i
+    echo "shutting down node, pid=$FURY_PID ..."
     
-    # Shutdown ethermint node
-    kill -9 "$ETHERMINT_PID"
-    wait "$ETHERMINT_PID"
+    # Shutdown fury node
+    kill -9 "$FURY_PID"
+    wait "$FURY_PID"
 }
 
 

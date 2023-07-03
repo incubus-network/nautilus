@@ -54,15 +54,15 @@ done
 
 set -euxo pipefail
 
-DATA_DIR=$(mktemp -d -t ethermint-datadir.XXXXX)
+DATA_DIR=$(mktemp -d -t fury-datadir.XXXXX)
 
 if [[ ! "$DATA_DIR" ]]; then
     echo "Could not create $DATA_DIR"
     exit 1
 fi
 
-# Compile ethermint
-echo "compiling ethermint"
+# Compile fury
+echo "compiling fury"
 make build
 
 # PID array declaration
@@ -105,7 +105,7 @@ init_func() {
 }
 
 start_func() {
-    echo "starting ethermint node $i in background ..."
+    echo "starting fury node $i in background ..."
     "$PWD"/build/fury start --pruning=nothing --rpc.unsafe \
     --p2p.laddr tcp://$IP_ADDR:$NODE_P2P_PORT"$i" --address tcp://$IP_ADDR:$NODE_PORT"$i" --rpc.laddr tcp://$IP_ADDR:$NODE_RPC_PORT"$i" \
     --json-rpc.address=$IP_ADDR:$RPC_PORT"$i" --json-rpc.ws-address=$IP_ADDR:$WS_PORT"$i" \
@@ -113,10 +113,10 @@ start_func() {
     --keyring-backend test --home "$DATA_DIR$i" \
     >"$DATA_DIR"/node"$i".log 2>&1 & disown
 
-    ETHERMINT_PID=$!
-    echo "started ethermint node, pid=$ETHERMINT_PID"
+    FURY_PID=$!
+    echo "started fury node, pid=$FURY_PID"
     # add PID to array
-    arr+=("$ETHERMINT_PID")
+    arr+=("$FURY_PID")
 
     if [[ $MODE == "pending" ]]; then
       echo "waiting for the first block..."
@@ -146,7 +146,7 @@ if [[ -z $TEST || $TEST == "integration" ]] ; then
 
     for i in $(seq 1 "$TEST_QTD"); do
         HOST_RPC=http://$IP_ADDR:$RPC_PORT"$i"
-        echo "going to test ethermint node $HOST_RPC ..."
+        echo "going to test fury node $HOST_RPC ..."
         MODE=$MODE HOST=$HOST_RPC go test ./tests/e2e/... -timeout=$time_out -v -short
         TEST_FAIL=$?
     done
@@ -161,7 +161,7 @@ if [[ -z $TEST || $TEST == "rpc" ||  $TEST == "pending" ]]; then
     for i in $(seq 1 "$TEST_QTD"); do
         HOST_RPC=http://$IP_ADDR:$RPC_PORT"$i"
         HOST_WS=$IP_ADDR:$WS_PORT"$i"
-        echo "going to test ethermint node rpc=$HOST_RPC ws=$HOST_WS ..."
+        echo "going to test fury node rpc=$HOST_RPC ws=$HOST_WS ..."
         MODE=$MODE HOST=$HOST_RPC HOST_WS=$HOST_WS go test ./tests/rpc/... -timeout=$time_out -v -short
 
         TEST_FAIL=$?
@@ -169,12 +169,12 @@ if [[ -z $TEST || $TEST == "rpc" ||  $TEST == "pending" ]]; then
 fi
 
 stop_func() {
-    ETHERMINT_PID=$i
-    echo "shutting down node, pid=$ETHERMINT_PID ..."
+    FURY_PID=$i
+    echo "shutting down node, pid=$FURY_PID ..."
 
-    # Shutdown ethermint node
-    kill -9 "$ETHERMINT_PID"
-    wait "$ETHERMINT_PID"
+    # Shutdown fury node
+    kill -9 "$FURY_PID"
+    wait "$FURY_PID"
 
     if [ $REMOVE_DATA_DIR == "true" ]
     then

@@ -15,7 +15,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/simapp"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	feemarkettypes "github.com/incubus-network/ethermint/x/feemarket/types"
+	feemarkettypes "github.com/incubus-network/fury/x/feemarket/types"
 
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/ethereum/go-ethereum/common"
@@ -30,13 +30,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/incubus-network/ethermint/app"
-	"github.com/incubus-network/ethermint/crypto/ethsecp256k1"
-	"github.com/incubus-network/ethermint/tests"
-	ethermint "github.com/incubus-network/ethermint/types"
-	"github.com/incubus-network/ethermint/x/evm"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/app"
+	"github.com/incubus-network/fury/crypto/ethsecp256k1"
+	"github.com/incubus-network/fury/tests"
+	fury "github.com/incubus-network/fury/types"
+	"github.com/incubus-network/fury/x/evm"
+	"github.com/incubus-network/fury/x/evm/statedb"
+	"github.com/incubus-network/fury/x/evm/types"
 
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
@@ -50,7 +50,7 @@ type EvmTestSuite struct {
 
 	ctx     sdk.Context
 	handler sdk.Handler
-	app     *app.EthermintApp
+	app     *app.FuryApp
 	codec   codec.Codec
 	chainID *big.Int
 
@@ -77,7 +77,7 @@ func (suite *EvmTestSuite) DoSetupTest(t require.TestingT) {
 	require.NoError(t, err)
 	consAddress := sdk.ConsAddress(priv.PubKey().Address())
 
-	suite.app = app.Setup(checkTx, func(app *app.EthermintApp, genesis simapp.GenesisState) simapp.GenesisState {
+	suite.app = app.Setup(checkTx, func(app *app.FuryApp, genesis simapp.GenesisState) simapp.GenesisState {
 		if suite.dynamicTxFee {
 			feemarketGenesis := feemarkettypes.DefaultGenesisState()
 			feemarketGenesis.Params.EnableHeight = 1
@@ -147,7 +147,7 @@ func (suite *EvmTestSuite) DoSetupTest(t require.TestingT) {
 	queryHelper := baseapp.NewQueryServerTestHelper(suite.ctx, suite.app.InterfaceRegistry())
 	types.RegisterQueryServer(queryHelper, suite.app.EvmKeeper)
 
-	acc := &ethermint.EthAccount{
+	acc := &fury.EthAccount{
 		BaseAccount: authtypes.NewBaseAccount(sdk.AccAddress(address.Bytes()), nil, 0, 0),
 		CodeHash:    common.BytesToHash(crypto.Keccak256(nil)).String(),
 	}

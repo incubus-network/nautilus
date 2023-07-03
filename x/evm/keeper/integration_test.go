@@ -13,16 +13,16 @@ import (
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/incubus-network/ethermint/app"
-	"github.com/incubus-network/ethermint/crypto/ethsecp256k1"
-	"github.com/incubus-network/ethermint/encoding"
-	"github.com/incubus-network/ethermint/tests"
-	"github.com/incubus-network/ethermint/testutil"
-	"github.com/incubus-network/ethermint/x/feemarket/types"
+	"github.com/incubus-network/fury/app"
+	"github.com/incubus-network/fury/crypto/ethsecp256k1"
+	"github.com/incubus-network/fury/encoding"
+	"github.com/incubus-network/fury/tests"
+	"github.com/incubus-network/fury/testutil"
+	"github.com/incubus-network/fury/x/feemarket/types"
 
 	"github.com/cosmos/cosmos-sdk/simapp"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
@@ -168,7 +168,7 @@ func setupChain(localMinGasPricesStr string) {
 	// Initialize the app, so we can use SetMinGasPrices to set the
 	// validator-specific min-gas-prices setting
 	db := dbm.NewMemDB()
-	newapp := app.NewEthermintApp(
+	newapp := app.NewFuryApp(
 		log.NewNopLogger(),
 		db,
 		nil,

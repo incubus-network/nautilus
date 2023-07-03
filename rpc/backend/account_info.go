@@ -10,8 +10,8 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	rpctypes "github.com/incubus-network/ethermint/rpc/types"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	rpctypes "github.com/incubus-network/fury/rpc/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 	"github.com/pkg/errors"
 )
 
@@ -122,7 +122,7 @@ func (b *Backend) GetProof(address common.Address, storageKeys []string, blockNr
 		Balance:      (*hexutil.Big)(balance.BigInt()),
 		CodeHash:     common.HexToHash(res.CodeHash),
 		Nonce:        hexutil.Uint64(res.Nonce),
-		StorageHash:  common.Hash{}, // NOTE: Ethermint doesn't have a storage hash. TODO: implement?
+		StorageHash:  common.Hash{}, // NOTE: Fury doesn't have a storage hash. TODO: implement?
 		StorageProof: storageProofs,
 	}, nil
 }

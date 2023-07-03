@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/incubus-network/ethermint/rpc/types"
+	"github.com/incubus-network/fury/rpc/types"
 
 	"github.com/tendermint/tendermint/libs/log"
 
@@ -20,7 +20,7 @@ import (
 	"github.com/ethereum/go-ethereum/eth/filters"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 )
 
 // FilterAPI gathers

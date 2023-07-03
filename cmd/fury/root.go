@@ -32,18 +32,18 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
 
-	"github.com/incubus-network/ethermint/app"
-	ethermintclient "github.com/incubus-network/ethermint/client"
-	"github.com/incubus-network/ethermint/client/debug"
-	"github.com/incubus-network/ethermint/crypto/hd"
-	"github.com/incubus-network/ethermint/encoding"
-	"github.com/incubus-network/ethermint/server"
-	servercfg "github.com/incubus-network/ethermint/server/config"
-	srvflags "github.com/incubus-network/ethermint/server/flags"
-	ethermint "github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/fury/app"
+	furyclient "github.com/incubus-network/fury/client"
+	"github.com/incubus-network/fury/client/debug"
+	"github.com/incubus-network/fury/crypto/hd"
+	"github.com/incubus-network/fury/encoding"
+	"github.com/incubus-network/fury/server"
+	servercfg "github.com/incubus-network/fury/server/config"
+	srvflags "github.com/incubus-network/fury/server/flags"
+	fury "github.com/incubus-network/fury/types"
 )
 
-const EnvPrefix = "ETHERMINT"
+const EnvPrefix = "FURY"
 
 // NewRootCmd creates a new root command for simd. It is called once in the
 // main function.
@@ -63,7 +63,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 
 	rootCmd := &cobra.Command{
 		Use:   "fury",
-		Short: "Ethermint Daemon",
+		Short: "Fury Daemon",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			// set the default command outputs
 			cmd.SetOut(cmd.OutOrStdout())
@@ -84,7 +84,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 			}
 
 			// FIXME: replace AttoxFury with bond denom
-			customAppTemplate, customAppConfig := servercfg.AppConfig(ethermint.AttoxFury)
+			customAppTemplate, customAppConfig := servercfg.AppConfig(fury.AttoxFury)
 
 			return sdkserver.InterceptConfigsPreRunHandler(cmd, customAppTemplate, customAppConfig, tmcfg.DefaultConfig())
 		},
@@ -97,7 +97,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 	cfg.Seal()
 
 	rootCmd.AddCommand(
-		ethermintclient.ValidateChainID(
+		furyclient.ValidateChainID(
 			genutilcli.InitCmd(app.ModuleBasics, app.DefaultNodeHome),
 		),
 		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome),
@@ -106,7 +106,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 		genutilcli.ValidateGenesisCmd(app.ModuleBasics),
 		AddGenesisAccountCmd(app.DefaultNodeHome),
 		tmcli.NewCompletionCmd(rootCmd, true),
-		ethermintclient.NewTestnetCmd(app.ModuleBasics, banktypes.GenesisBalancesIterator{}),
+		furyclient.NewTestnetCmd(app.ModuleBasics, banktypes.GenesisBalancesIterator{}),
 		debug.Cmd(),
 		config.Cmd(),
 	)
@@ -119,7 +119,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 		rpc.StatusCommand(),
 		queryCommand(),
 		txCommand(),
-		ethermintclient.KeyCommands(app.DefaultNodeHome),
+		furyclient.KeyCommands(app.DefaultNodeHome),
 	)
 
 	rootCmd, err := srvflags.AddTxFlags(rootCmd)
@@ -228,7 +228,7 @@ func (a appCreator) newApp(logger tmlog.Logger, db dbm.DB, traceStore io.Writer,
 		cast.ToUint32(appOpts.Get(sdkserver.FlagStateSyncSnapshotKeepRecent)),
 	)
 
-	ethermintApp := app.NewEthermintApp(
+	furyApp := app.NewFuryApp(
 		logger, db, traceStore, true, skipUpgradeHeights,
 		cast.ToString(appOpts.Get(flags.FlagHome)),
 		cast.ToUint(appOpts.Get(sdkserver.FlagInvCheckPeriod)),
@@ -245,7 +245,7 @@ func (a appCreator) newApp(logger tmlog.Logger, db dbm.DB, traceStore io.Writer,
 		baseapp.SetSnapshot(snapshotStore, snapshotOptions),
 	)
 
-	return ethermintApp
+	return furyApp
 }
 
 // appExport creates a new simapp (optionally at a given height)
@@ -254,21 +254,21 @@ func (a appCreator) appExport(
 	logger tmlog.Logger, db dbm.DB, traceStore io.Writer, height int64, forZeroHeight bool, jailAllowedAddrs []string,
 	appOpts servertypes.AppOptions,
 ) (servertypes.ExportedApp, error) {
-	var ethermintApp *app.EthermintApp
+	var furyApp *app.FuryApp
 	homePath, ok := appOpts.Get(flags.FlagHome).(string)
 	if !ok || homePath == "" {
 		return servertypes.ExportedApp{}, errors.New("application home not set")
 	}
 
 	if height != -1 {
-		ethermintApp = app.NewEthermintApp(logger, db, traceStore, false, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
+		furyApp = app.NewFuryApp(logger, db, traceStore, false, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
 
-		if err := ethermintApp.LoadHeight(height); err != nil {
+		if err := furyApp.LoadHeight(height); err != nil {
 			return servertypes.ExportedApp{}, err
 		}
 	} else {
-		ethermintApp = app.NewEthermintApp(logger, db, traceStore, true, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
+		furyApp = app.NewFuryApp(logger, db, traceStore, true, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
 	}
 
-	return ethermintApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs)
+	return furyApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs)
 }

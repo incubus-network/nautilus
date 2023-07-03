@@ -19,10 +19,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 
-	"github.com/incubus-network/ethermint/x/evm/client/cli"
-	"github.com/incubus-network/ethermint/x/evm/keeper"
-	"github.com/incubus-network/ethermint/x/evm/simulation"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/x/evm/client/cli"
+	"github.com/incubus-network/fury/x/evm/keeper"
+	"github.com/incubus-network/fury/x/evm/simulation"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 var (

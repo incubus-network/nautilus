@@ -14,7 +14,7 @@ from .utils import wait_for_port
 DEFAULT_CHAIN_BINARY = "fury"
 
 
-class Ethermint:
+class Fury:
     def __init__(self, base_dir, chain_binary=DEFAULT_CHAIN_BINARY):
         self._w3 = None
         self.base_dir = base_dir
@@ -24,7 +24,7 @@ class Ethermint:
         self.chain_binary = chain_binary
 
     def copy(self):
-        return Ethermint(self.base_dir)
+        return Fury(self.base_dir)
 
     @property
     def w3_http_endpoint(self, i=0):
@@ -68,9 +68,9 @@ class Geth:
         self.w3 = w3
 
 
-def setup_ethermint(path, base_port):
+def setup_fury(path, base_port):
     cfg = Path(__file__).parent / "configs/default.jsonnet"
-    yield from setup_custom_ethermint(path, base_port, cfg)
+    yield from setup_custom_fury(path, base_port, cfg)
 
 
 def setup_geth(path, base_port):
@@ -101,7 +101,7 @@ def setup_geth(path, base_port):
             proc.wait()
 
 
-def setup_custom_ethermint(
+def setup_custom_fury(
     path, base_port, config, post_init=None, chain_binary=None, wait_port=True
 ):
     cmd = [
@@ -129,7 +129,7 @@ def setup_custom_ethermint(
         if wait_port:
             wait_for_port(ports.evmrpc_port(base_port))
             wait_for_port(ports.evmrpc_ws_port(base_port))
-        yield Ethermint(
+        yield Fury(
             path / "highbury_710-1", chain_binary=chain_binary or DEFAULT_CHAIN_BINARY
         )
     finally:

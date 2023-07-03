@@ -9,15 +9,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/incubus-network/ethermint/app"
+	"github.com/incubus-network/fury/app"
 
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	evmkeeper "github.com/incubus-network/ethermint/x/evm/keeper"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
+	evmkeeper "github.com/incubus-network/fury/x/evm/keeper"
+	"github.com/incubus-network/fury/x/evm/statedb"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/consensus/ethash"
@@ -28,7 +28,7 @@ import (
 	ethparams "github.com/ethereum/go-ethereum/params"
 	ethrlp "github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/incubus-network/ethermint/crypto/ethsecp256k1"
+	"github.com/incubus-network/fury/crypto/ethsecp256k1"
 	"github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
@@ -52,7 +52,7 @@ func init() {
 type ImporterTestSuite struct {
 	suite.Suite
 
-	app *app.EthermintApp
+	app *app.FuryApp
 	ctx sdk.Context
 }
 

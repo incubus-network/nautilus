@@ -19,10 +19,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 
-	"github.com/incubus-network/ethermint/x/feemarket/client/cli"
-	"github.com/incubus-network/ethermint/x/feemarket/keeper"
-	"github.com/incubus-network/ethermint/x/feemarket/simulation"
-	"github.com/incubus-network/ethermint/x/feemarket/types"
+	"github.com/incubus-network/fury/x/feemarket/client/cli"
+	"github.com/incubus-network/fury/x/feemarket/keeper"
+	"github.com/incubus-network/fury/x/feemarket/simulation"
+	"github.com/incubus-network/fury/x/feemarket/types"
 )
 
 var (

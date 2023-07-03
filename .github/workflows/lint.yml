@@ -1,5 +1,5 @@
 name: Lint
-# Lint runs golangci-lint over the entire ethermint repository This workflow is
+# Lint runs golangci-lint over the entire fury repository This workflow is
 # run on every pull request and push to main The `golangci` will pass without
 # running if no *.{go, mod, sum} files have been changed.
 on:
@@ -53,7 +53,7 @@ jobs:
       - uses: cachix/install-nix-action@v18
       - uses: cachix/cachix-action@v11
         with:
-          name: ethermint
+          name: fury
       - uses: technote-space/get-diff-action@v6.1.1
         with:
           PATTERNS: |
@@ -69,7 +69,7 @@ jobs:
       - uses: cachix/install-nix-action@v18
       - uses: cachix/cachix-action@v11
         with:
-          name: ethermint
+          name: fury
       - name: run gomod2nix
         run: |
           nix run -f ./nix gomod2nix

@@ -16,16 +16,16 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/incubus-network/ethermint/encoding"
-	ethermint "github.com/incubus-network/ethermint/types"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/encoding"
+	fury "github.com/incubus-network/fury/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/incubus-network/ethermint/crypto/ethsecp256k1"
+	"github.com/incubus-network/fury/crypto/ethsecp256k1"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
@@ -34,7 +34,7 @@ import (
 )
 
 // DefaultConsensusParams defines the default Tendermint consensus params used in
-// EthermintApp testing.
+// FuryApp testing.
 var DefaultConsensusParams = &abci.ConsensusParams{
 	Block: &abci.BlockParams{
 		MaxBytes: 200000,
@@ -52,14 +52,14 @@ var DefaultConsensusParams = &abci.ConsensusParams{
 	},
 }
 
-// Setup initializes a new EthermintApp. A Nop logger is set in EthermintApp.
-func Setup(isCheckTx bool, patchGenesis func(*EthermintApp, simapp.GenesisState) simapp.GenesisState) *EthermintApp {
+// Setup initializes a new FuryApp. A Nop logger is set in FuryApp.
+func Setup(isCheckTx bool, patchGenesis func(*FuryApp, simapp.GenesisState) simapp.GenesisState) *FuryApp {
 	return SetupWithDB(isCheckTx, patchGenesis, dbm.NewMemDB())
 }
 
-// SetupWithDB initializes a new EthermintApp. A Nop logger is set in EthermintApp.
-func SetupWithDB(isCheckTx bool, patchGenesis func(*EthermintApp, simapp.GenesisState) simapp.GenesisState, db dbm.DB) *EthermintApp {
-	app := NewEthermintApp(log.NewNopLogger(),
+// SetupWithDB initializes a new FuryApp. A Nop logger is set in FuryApp.
+func SetupWithDB(isCheckTx bool, patchGenesis func(*FuryApp, simapp.GenesisState) simapp.GenesisState, db dbm.DB) *FuryApp {
+	app := NewFuryApp(log.NewNopLogger(),
 		db,
 		nil,
 		true,
@@ -102,7 +102,7 @@ func RandomGenesisAccounts(simState *module.SimulationState) authtypes.GenesisAc
 	for i, acc := range simState.Accounts {
 		bacc := authtypes.NewBaseAccountWithAddress(acc.Address)
 
-		ethacc := &ethermint.EthAccount{
+		ethacc := &fury.EthAccount{
 			BaseAccount: bacc,
 			CodeHash:    common.BytesToHash(emptyCodeHash).String(),
 		}

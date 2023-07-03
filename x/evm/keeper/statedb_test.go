@@ -16,10 +16,10 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/core/vm"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/incubus-network/ethermint/crypto/ethsecp256k1"
-	"github.com/incubus-network/ethermint/tests"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/crypto/ethsecp256k1"
+	"github.com/incubus-network/fury/tests"
+	"github.com/incubus-network/fury/x/evm/statedb"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 func (suite *KeeperTestSuite) TestCreateAccount() {

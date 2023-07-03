@@ -1,6 +1,6 @@
-# Ethermint
+# Fury
 
-Celestiaorg fork of https://github.com/tharsis/ethermint
+Celestiaorg fork of https://github.com/tharsis/fury
 
 Replaces usage of https://github.com/tendermint/tendermint with https://github.com/rollkit/rollkit
 

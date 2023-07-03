@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/incubus-network/ethermint/x/evm/simulation"
+	"github.com/incubus-network/fury/x/evm/simulation"
 )
 
 // TestParamChanges tests the paramChanges are generated as expected.

@@ -1,9 +1,9 @@
 syntax = "proto3";
-package ethermint.types.v1;
+package fury.types.v1;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/incubus-network/ethermint/types";
+option go_package = "github.com/incubus-network/fury/types";
 
 // TxResult is the value stored in eth tx indexer
 message TxResult {

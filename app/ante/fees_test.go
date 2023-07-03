@@ -7,9 +7,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/incubus-network/ethermint/app/ante"
-	"github.com/incubus-network/ethermint/tests"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/app/ante"
+	"github.com/incubus-network/fury/tests"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 )
 
 var execTypes = []struct {

@@ -10,10 +10,10 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	tmrpcclient "github.com/tendermint/tendermint/rpc/client"
 
-	"github.com/incubus-network/ethermint/rpc/backend/mocks"
-	rpctypes "github.com/incubus-network/ethermint/rpc/types"
-	"github.com/incubus-network/ethermint/tests"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/rpc/backend/mocks"
+	rpctypes "github.com/incubus-network/fury/rpc/types"
+	"github.com/incubus-network/fury/tests"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 )
 
 func (suite *BackendTestSuite) TestGetCode() {

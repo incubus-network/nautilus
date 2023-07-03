@@ -60,7 +60,7 @@ jobs:
           make test-import
         if: env.GIT_DIFF
         
-  # TODO(jbowen93): https://github.com/celestiaorg/ethermint/issues/27
+  # TODO(jbowen93): https://github.com/celestiaorg/fury/issues/27
   # test-rpc:
   #   runs-on: ubuntu-latest
   #   timeout-minutes: 15
@@ -103,7 +103,7 @@ jobs:
           make test-integration
         if: env.GIT_DIFF
 
-  # TODO(jbowen93): https://github.com/celestiaorg/ethermint/issues/27
+  # TODO(jbowen93): https://github.com/celestiaorg/fury/issues/27
   # integration_tests:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -111,7 +111,7 @@ jobs:
   #     - uses: cachix/install-nix-action@v18
   #     - uses: cachix/cachix-action@v11
   #       with:
-  #         name: ethermint
+  #         name: fury
   #         signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
   #     - uses: technote-space/get-diff-action@v6.1.1
   #       with:
@@ -146,7 +146,7 @@ jobs:
       - uses: cachix/install-nix-action@v18
       - uses: cachix/cachix-action@v11
         with:
-          name: ethermint
+          name: fury
           signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
       - name: 'instantiate integration test env'
         run: nix-store -r $(nix-instantiate tests/integration_tests/shell.nix)

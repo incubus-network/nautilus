@@ -10,16 +10,16 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/rpc"
-	rpctypes "github.com/incubus-network/ethermint/rpc/types"
-	ethermint "github.com/incubus-network/ethermint/types"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
-	feemarkettypes "github.com/incubus-network/ethermint/x/feemarket/types"
+	rpctypes "github.com/incubus-network/fury/rpc/types"
+	fury "github.com/incubus-network/fury/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	feemarkettypes "github.com/incubus-network/fury/x/feemarket/types"
 	tmrpctypes "github.com/tendermint/tendermint/rpc/core/types"
 )
 
 // ChainID is the EIP-155 replay-protection chain id for the current ethereum chain config.
 func (b *Backend) ChainID() (*hexutil.Big, error) {
-	eip155ChainID, err := ethermint.ParseChainID(b.clientCtx.ChainID)
+	eip155ChainID, err := fury.ParseChainID(b.clientCtx.ChainID)
 	if err != nil {
 		panic(err)
 	}

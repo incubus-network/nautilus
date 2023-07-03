@@ -16,10 +16,10 @@ import (
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/tendermint/tendermint/libs/log"
 
-	ethermint "github.com/incubus-network/ethermint/types"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
-	"github.com/incubus-network/ethermint/x/evm/types"
-	evm "github.com/incubus-network/ethermint/x/evm/vm"
+	fury "github.com/incubus-network/fury/types"
+	"github.com/incubus-network/fury/x/evm/statedb"
+	"github.com/incubus-network/fury/x/evm/types"
+	evm "github.com/incubus-network/fury/x/evm/vm"
 )
 
 // Keeper grants access to the EVM module state and implements the go-ethereum StateDB interface.
@@ -109,7 +109,7 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 
 // WithChainID sets the chain id to the local variable in the keeper
 func (k *Keeper) WithChainID(ctx sdk.Context) {
-	chainID, err := ethermint.ParseChainID(ctx.ChainID())
+	chainID, err := fury.ParseChainID(ctx.ChainID())
 	if err != nil {
 		panic(err)
 	}
@@ -258,7 +258,7 @@ func (k *Keeper) GetAccountWithoutBalance(ctx sdk.Context, addr common.Address) 
 	}
 
 	codeHash := types.EmptyCodeHash
-	ethAcct, ok := acct.(ethermint.EthAccountI)
+	ethAcct, ok := acct.(fury.EthAccountI)
 	if ok {
 		codeHash = ethAcct.GetCodeHash().Bytes()
 	}

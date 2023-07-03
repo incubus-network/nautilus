@@ -5,7 +5,7 @@ export PATH=$PATH:$GOPATH/bin
 # remove existing daemon
 rm -rf ~/.fury
 
-# build ethermint binary
+# build fury binary
 make install
 
 cd tests/solidity
@@ -19,4 +19,4 @@ else
     yarn install
 fi
 
-yarn test --network ethermint $@
+yarn test --network fury $@

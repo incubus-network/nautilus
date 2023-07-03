@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	v3 "github.com/incubus-network/ethermint/x/evm/migrations/v3"
+	v3 "github.com/incubus-network/fury/x/evm/migrations/v3"
 
 	"github.com/stretchr/testify/require"
 
@@ -12,11 +12,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
-	"github.com/incubus-network/ethermint/encoding"
+	"github.com/incubus-network/fury/encoding"
 
-	"github.com/incubus-network/ethermint/app"
-	v3types "github.com/incubus-network/ethermint/x/evm/migrations/v3/types"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/app"
+	v3types "github.com/incubus-network/fury/x/evm/migrations/v3/types"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 func TestMigrateStore(t *testing.T) {

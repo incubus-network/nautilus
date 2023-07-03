@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"math/big"
 
-	"github.com/incubus-network/ethermint/x/feemarket/keeper"
-	v010 "github.com/incubus-network/ethermint/x/feemarket/migrations/v010"
+	"github.com/incubus-network/fury/x/feemarket/keeper"
+	v010 "github.com/incubus-network/fury/x/feemarket/migrations/v010"
 )
 
 func (suite *KeeperTestSuite) TestMigration1To2() {

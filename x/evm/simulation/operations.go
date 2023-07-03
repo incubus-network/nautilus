@@ -26,10 +26,10 @@ import (
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/signing"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/incubus-network/ethermint/encoding"
-	"github.com/incubus-network/ethermint/tests"
-	"github.com/incubus-network/ethermint/x/evm/keeper"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/encoding"
+	"github.com/incubus-network/fury/tests"
+	"github.com/incubus-network/fury/x/evm/keeper"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 const (

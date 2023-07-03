@@ -2,7 +2,7 @@ package keeper_test
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	evmkeeper "github.com/incubus-network/ethermint/x/evm/keeper"
+	evmkeeper "github.com/incubus-network/fury/x/evm/keeper"
 )
 
 func (suite *KeeperTestSuite) TestMigrations() {

@@ -14,10 +14,10 @@ import (
 	tmtypes "github.com/tendermint/tendermint/types"
 	"google.golang.org/grpc/metadata"
 
-	"github.com/incubus-network/ethermint/rpc/backend/mocks"
-	ethrpc "github.com/incubus-network/ethermint/rpc/types"
-	"github.com/incubus-network/ethermint/tests"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/rpc/backend/mocks"
+	ethrpc "github.com/incubus-network/fury/rpc/types"
+	"github.com/incubus-network/fury/tests"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 )
 
 func (suite *BackendTestSuite) TestBlockNumber() {

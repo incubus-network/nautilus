@@ -37,25 +37,25 @@ func TestParseChainID(t *testing.T) {
 			"invalid chain-id, undefined identifier", "_1-1", true, nil,
 		},
 		{
-			"invalid chain-id, uppercases", "ETHERMINT_1-1", true, nil,
+			"invalid chain-id, uppercases", "FURY_1-1", true, nil,
 		},
 		{
-			"invalid chain-id, mixed cases", "Ethermint_1-1", true, nil,
+			"invalid chain-id, mixed cases", "Fury_1-1", true, nil,
 		},
 		{
 			"invalid chain-id, special chars", "$&*#!_1-1", true, nil,
 		},
 		{
-			"invalid eip155 chain-id, cannot start with 0", "ethermint_001-1", true, nil,
+			"invalid eip155 chain-id, cannot start with 0", "fury_001-1", true, nil,
 		},
 		{
-			"invalid eip155 chain-id, cannot invalid base", "ethermint_0x212-1", true, nil,
+			"invalid eip155 chain-id, cannot invalid base", "fury_0x212-1", true, nil,
 		},
 		{
-			"invalid eip155 chain-id, non-integer", "ethermint_highbury_710-1", true, nil,
+			"invalid eip155 chain-id, non-integer", "fury_highbury_710-1", true, nil,
 		},
 		{
-			"invalid epoch, undefined", "ethermint_-", true, nil,
+			"invalid epoch, undefined", "fury_-", true, nil,
 		},
 		{
 			"blank chain ID", " ", true, nil,
@@ -67,7 +67,7 @@ func TestParseChainID(t *testing.T) {
 			"empty content for chain id, eip155 and epoch numbers", "_-", true, nil,
 		},
 		{
-			"long chain-id", "ethermint_" + strings.Repeat("1", 40) + "-1", true, nil,
+			"long chain-id", "fury_" + strings.Repeat("1", 40) + "-1", true, nil,
 		},
 	}
 

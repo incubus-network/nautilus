@@ -7,11 +7,11 @@ TMVERSION := $(shell go list -m github.com/tendermint/tendermint | sed 's:.* ::'
 COMMIT := $(shell git log -1 --format='%H')
 LEDGER_ENABLED ?= true
 BINDIR ?= $(GOPATH)/bin
-ETHERMINT_BINARY = fury
-ETHERMINT_DIR = ethermint
+FURY_BINARY = fury
+FURY_DIR = fury
 BUILDDIR ?= $(CURDIR)/build
 SIMAPP = ./app
-HTTPS_GIT := https://github.com/incubus-network/ethermint.git
+HTTPS_GIT := https://github.com/incubus-network/fury.git
 PROJECT_NAME = $(shell git remote get-url origin | xargs basename -s .git)
 DOCKER := $(shell which docker)
 DOCKER_BUF := $(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace bufbuild/buf:1.0.0-rc8
@@ -62,8 +62,8 @@ build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 
 # process linker flags
 
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=ethermint \
-		  -X github.com/cosmos/cosmos-sdk/version.AppName=$(ETHERMINT_BINARY) \
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=fury \
+		  -X github.com/cosmos/cosmos-sdk/version.AppName=$(FURY_BINARY) \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
 			-X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
@@ -136,12 +136,12 @@ docker-build:
 	docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
 	# docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:${COMMIT_HASH}
 	# update old container
-	docker rm ethermint || true
+	docker rm fury || true
 	# create a new container from the latest image
-	docker create --name ethermint -t -i tharsis/ethermint:latest ethermint
+	docker create --name fury -t -i tharsis/fury:latest fury
 	# move the binaries to the ./build directory
 	mkdir -p ./build/
-	docker cp ethermint:/usr/bin/fury ./build/
+	docker cp fury:/usr/bin/fury ./build/
 
 $(MOCKS_DIR):
 	mkdir -p $(MOCKS_DIR)
@@ -164,7 +164,7 @@ build-all: tools build lint test
 ###                                Releasing                                ###
 ###############################################################################
 
-PACKAGE_NAME:=github.com/incubus-network/ethermint
+PACKAGE_NAME:=github.com/incubus-network/fury
 GOLANG_CROSS_VERSION = v1.18
 GOPATH ?= '$(HOME)/go'
 release-dry-run:
@@ -289,7 +289,7 @@ update-swagger-docs: statik
 .PHONY: update-swagger-docs
 
 godocs:
-	@echo "--> Wait a few seconds and visit http://localhost:6060/pkg/github.com/incubus-network/ethermint/types"
+	@echo "--> Wait a few seconds and visit http://localhost:6060/pkg/github.com/incubus-network/fury/types"
 	godoc -http=:6060
 
 ###############################################################################
@@ -323,7 +323,7 @@ else
 endif
 
 test-import:
-	go test -run TestImporterTestSuite -v --vet=off github.com/incubus-network/ethermint/tests/importer
+	go test -run TestImporterTestSuite -v --vet=off github.com/incubus-network/fury/tests/importer
 
 test-rpc:
 	./scripts/integration-test-all.sh -t "rpc" -q 1 -z 1 -s 2 -m "rpc" -r "true"
@@ -508,13 +508,13 @@ ifeq ($(OS),Windows_NT)
 	mkdir localnet-setup &
 	@$(MAKE) localnet-build
 
-	IF not exist "build/node0/$(ETHERMINT_BINARY)/config/genesis.json" docker run --rm -v $(CURDIR)/build\ethermint\Z fury/node "./fury testnet --v 4 -o /ethermint --keyring-backend=test --ip-addresses furynode0,furynode1,furynode2,furynode3"
+	IF not exist "build/node0/$(FURY_BINARY)/config/genesis.json" docker run --rm -v $(CURDIR)/build\fury\Z fury/node "./fury testnet --v 4 -o /fury --keyring-backend=test --ip-addresses furynode0,furynode1,furynode2,furynode3"
 	docker-compose up -d
 else
 	mkdir -p localnet-setup
 	@$(MAKE) localnet-build
 
-	if ! [ -f localnet-setup/node0/$(ETHERMINT_BINARY)/config/genesis.json ]; then docker run --rm -v $(CURDIR)/localnet-setup:/ethermint:Z fury/node "./fury testnet --v 4 -o /ethermint --keyring-backend=test --ip-addresses furynode0,furynode1,furynode2,furynode3"; fi
+	if ! [ -f localnet-setup/node0/$(FURY_BINARY)/config/genesis.json ]; then docker run --rm -v $(CURDIR)/localnet-setup:/fury:Z fury/node "./fury testnet --v 4 -o /fury --keyring-backend=test --ip-addresses furynode0,furynode1,furynode2,furynode3"; fi
 	docker-compose up -d
 endif
 
@@ -531,19 +531,19 @@ localnet-clean:
 localnet-unsafe-reset:
 	docker-compose down
 ifeq ($(OS),Windows_NT)
-	@docker run --rm -v $(CURDIR)\localnet-setup\node0\ethermitd:ethermint\Z fury/node "./fury unsafe-reset-all --home=/ethermint"
-	@docker run --rm -v $(CURDIR)\localnet-setup\node1\ethermitd:ethermint\Z fury/node "./fury unsafe-reset-all --home=/ethermint"
-	@docker run --rm -v $(CURDIR)\localnet-setup\node2\ethermitd:ethermint\Z fury/node "./fury unsafe-reset-all --home=/ethermint"
-	@docker run --rm -v $(CURDIR)\localnet-setup\node3\ethermitd:ethermint\Z fury/node "./fury unsafe-reset-all --home=/ethermint"
+	@docker run --rm -v $(CURDIR)\localnet-setup\node0\ethermitd:fury\Z fury/node "./fury unsafe-reset-all --home=/fury"
+	@docker run --rm -v $(CURDIR)\localnet-setup\node1\ethermitd:fury\Z fury/node "./fury unsafe-reset-all --home=/fury"
+	@docker run --rm -v $(CURDIR)\localnet-setup\node2\ethermitd:fury\Z fury/node "./fury unsafe-reset-all --home=/fury"
+	@docker run --rm -v $(CURDIR)\localnet-setup\node3\ethermitd:fury\Z fury/node "./fury unsafe-reset-all --home=/fury"
 else
-	@docker run --rm -v $(CURDIR)/localnet-setup/node0/ethermitd:/ethermint:Z fury/node "./fury unsafe-reset-all --home=/ethermint"
-	@docker run --rm -v $(CURDIR)/localnet-setup/node1/ethermitd:/ethermint:Z fury/node "./fury unsafe-reset-all --home=/ethermint"
-	@docker run --rm -v $(CURDIR)/localnet-setup/node2/ethermitd:/ethermint:Z fury/node "./fury unsafe-reset-all --home=/ethermint"
-	@docker run --rm -v $(CURDIR)/localnet-setup/node3/ethermitd:/ethermint:Z fury/node "./fury unsafe-reset-all --home=/ethermint"
+	@docker run --rm -v $(CURDIR)/localnet-setup/node0/ethermitd:/fury:Z fury/node "./fury unsafe-reset-all --home=/fury"
+	@docker run --rm -v $(CURDIR)/localnet-setup/node1/ethermitd:/fury:Z fury/node "./fury unsafe-reset-all --home=/fury"
+	@docker run --rm -v $(CURDIR)/localnet-setup/node2/ethermitd:/fury:Z fury/node "./fury unsafe-reset-all --home=/fury"
+	@docker run --rm -v $(CURDIR)/localnet-setup/node3/ethermitd:/fury:Z fury/node "./fury unsafe-reset-all --home=/fury"
 endif
 
 # Clean testnet
 localnet-show-logstream:
 	docker-compose logs --tail=1000 -f
 
-.PHONY: build-docker-local-ethermint localnet-start localnet-stop
+.PHONY: build-docker-local-fury localnet-start localnet-stop

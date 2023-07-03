@@ -6,10 +6,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/incubus-network/ethermint/rpc/backend"
+	"github.com/incubus-network/fury/rpc/backend"
 
-	"github.com/incubus-network/ethermint/crypto/hd"
-	ethermint "github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/fury/crypto/hd"
+	fury "github.com/incubus-network/fury/types"
 
 	"github.com/tendermint/tendermint/libs/log"
 
@@ -21,14 +21,14 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 )
 
 // PrivateAccountAPI is the personal_ prefixed set of APIs in the Web3 JSON-RPC spec.
 type PrivateAccountAPI struct {
 	backend    backend.EVMBackend
 	logger     log.Logger
-	hdPathIter ethermint.HDPathIterator
+	hdPathIter fury.HDPathIterator
 }
 
 // NewAPI creates an instance of the public Personal Eth API.
@@ -39,7 +39,7 @@ func NewAPI(
 	cfg := sdk.GetConfig()
 	basePath := cfg.GetFullBIP44Path()
 
-	iterator, err := ethermint.NewHDPathIterator(basePath, true)
+	iterator, err := fury.NewHDPathIterator(basePath, true)
 	if err != nil {
 		panic(err)
 	}
@@ -96,7 +96,7 @@ func (api *PrivateAccountAPI) NewAccount(password string) (common.Address, error
 	}
 	addr := common.BytesToAddress(pubKey.Address().Bytes())
 	api.logger.Info("Your new key was generated", "address", addr.String())
-	api.logger.Info("Please backup your key file!", "path", os.Getenv("HOME")+"/.ethermint/"+name) // TODO: pass the correct binary
+	api.logger.Info("Please backup your key file!", "path", os.Getenv("HOME")+"/.fury/"+name) // TODO: pass the correct binary
 	api.logger.Info("Please remember your password!")
 	return addr, nil
 }
@@ -163,7 +163,7 @@ func (api *PrivateAccountAPI) EcRecover(_ context.Context, data, sig hexutil.Byt
 	return crypto.PubkeyToAddress(*pubkey), nil
 }
 
-// Unpair deletes a pairing between wallet and ethermint.
+// Unpair deletes a pairing between wallet and fury.
 func (api *PrivateAccountAPI) Unpair(_ context.Context, url, pin string) error {
 	api.logger.Debug("personal_unpair", "url", url, "pin", pin)
 	api.logger.Info("personal_unpair for smartcard wallet not supported")

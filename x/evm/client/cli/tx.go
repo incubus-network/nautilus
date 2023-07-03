@@ -12,8 +12,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 
-	rpctypes "github.com/incubus-network/ethermint/rpc/types"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	rpctypes "github.com/incubus-network/fury/rpc/types"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 // GetTxCmd returns the transaction commands for this module

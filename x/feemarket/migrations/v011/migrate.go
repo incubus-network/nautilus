@@ -4,8 +4,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
-	v010types "github.com/incubus-network/ethermint/x/feemarket/migrations/v010/types"
-	"github.com/incubus-network/ethermint/x/feemarket/types"
+	v010types "github.com/incubus-network/fury/x/feemarket/migrations/v010/types"
+	"github.com/incubus-network/fury/x/feemarket/types"
 )
 
 // MigrateStore adds the MinGasPrice param with a value of 0

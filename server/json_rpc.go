@@ -12,10 +12,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/types"
 	ethlog "github.com/ethereum/go-ethereum/log"
 	ethrpc "github.com/ethereum/go-ethereum/rpc"
-	"github.com/incubus-network/ethermint/rpc"
+	"github.com/incubus-network/fury/rpc"
 
-	"github.com/incubus-network/ethermint/server/config"
-	ethermint "github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/fury/server/config"
+	fury "github.com/incubus-network/fury/types"
 )
 
 // StartJSONRPC starts the JSON-RPC server
@@ -24,7 +24,7 @@ func StartJSONRPC(ctx *server.Context,
 	tmRPCAddr,
 	tmEndpoint string,
 	config *config.Config,
-	indexer ethermint.EVMTxIndexer,
+	indexer fury.EVMTxIndexer,
 ) (*http.Server, chan struct{}, error) {
 	tmWsClient := ConnectTmWS(tmRPCAddr, tmEndpoint, ctx.Logger)
 

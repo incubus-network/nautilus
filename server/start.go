@@ -44,11 +44,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/incubus-network/ethermint/indexer"
-	ethdebug "github.com/incubus-network/ethermint/rpc/namespaces/ethereum/debug"
-	"github.com/incubus-network/ethermint/server/config"
-	srvflags "github.com/incubus-network/ethermint/server/flags"
-	ethermint "github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/fury/indexer"
+	ethdebug "github.com/incubus-network/fury/rpc/namespaces/ethereum/debug"
+	"github.com/incubus-network/fury/server/config"
+	srvflags "github.com/incubus-network/fury/server/flags"
+	fury "github.com/incubus-network/fury/types"
 
 	rollconf "github.com/rollkit/rollkit/config"
 	rollconv "github.com/rollkit/rollkit/conv"
@@ -398,7 +398,7 @@ func startInProcess(ctx *server.Context, clientCtx client.Context, appCreator ty
 		furyetricsexp.Setup(config.JSONRPC.MetricsAddress)
 	}
 
-	var idxer ethermint.EVMTxIndexer
+	var idxer fury.EVMTxIndexer
 	if config.JSONRPC.EnableIndexer {
 		idxDB, err := OpenIndexerDB(home, server.GetAppDBBackend(ctx.Viper))
 		if err != nil {

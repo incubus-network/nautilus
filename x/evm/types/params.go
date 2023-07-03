@@ -9,13 +9,13 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/fury/types"
 )
 
 var _ paramtypes.ParamSet = &Params{}
 
 var (
-	// DefaultEVMDenom defines the default EVM denomination on Ethermint
+	// DefaultEVMDenom defines the default EVM denomination on Fury
 	DefaultEVMDenom = types.AttoxFury
 	// DefaultMinGasMultiplier is 0.5 or 50%
 	DefaultMinGasMultiplier = sdk.NewDecWithPrec(50, 2)

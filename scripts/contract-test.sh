@@ -5,22 +5,22 @@ CHAINID="highbury_710-1"
 MONIKER="localtestnet"
 
 # stop and remove existing daemon and client data and process(es)
-rm -rf ~/.ethermint*
-pkill -f "ethermint*"
+rm -rf ~/.fury*
+pkill -f "fury*"
 
-make build-ethermint
+make build-fury
 
 # if $KEY exists it should be override
 "$PWD"/build/fury keys add $KEY --keyring-backend test --algo "eth_secp256k1"
 
-# Set moniker and chain-id for Ethermint (Moniker can be anything, chain-id must be an integer)
+# Set moniker and chain-id for Fury (Moniker can be anything, chain-id must be an integer)
 "$PWD"/build/fury init $MONIKER --chain-id $CHAINID
 
 # Change parameter token denominations to axfury
-cat $HOME/.ethermint/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="stake"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
-cat $HOME/.ethermint/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="axfury"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
-cat $HOME/.ethermint/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="axfury"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
-cat $HOME/.ethermint/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="axfury"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
+cat $HOME/.fury/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="stake"' > $HOME/.fury/config/tmp_genesis.json && mv $HOME/.fury/config/tmp_genesis.json $HOME/.fury/config/genesis.json
+cat $HOME/.fury/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="axfury"' > $HOME/.fury/config/tmp_genesis.json && mv $HOME/.fury/config/tmp_genesis.json $HOME/.fury/config/genesis.json
+cat $HOME/.fury/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="axfury"' > $HOME/.fury/config/tmp_genesis.json && mv $HOME/.fury/config/tmp_genesis.json $HOME/.fury/config/genesis.json
+cat $HOME/.fury/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="axfury"' > $HOME/.fury/config/tmp_genesis.json && mv $HOME/.fury/config/tmp_genesis.json $HOME/.fury/config/genesis.json
 
 # Allocate genesis accounts (cosmos formatted addresses)
 "$PWD"/build/fury add-genesis-account "$("$PWD"/build/fury keys show "$KEY" -a --keyring-backend test)" 100000000000000000000axfury,10000000000000000000stake --keyring-backend test
@@ -60,4 +60,4 @@ cd tests/solidity/suites/basic/ && go get && go run main.go $ACCT
 # kill test fury
 echo "going to shutdown fury in 3 seconds..."
 sleep 3
-pkill -f "ethermint*"
+pkill -f "fury*"

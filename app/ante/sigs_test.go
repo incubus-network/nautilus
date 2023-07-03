@@ -3,9 +3,9 @@ package ante_test
 import (
 	"math/big"
 
-	"github.com/incubus-network/ethermint/tests"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/tests"
+	"github.com/incubus-network/fury/x/evm/statedb"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 )
 
 func (suite AnteTestSuite) TestSignatures() {

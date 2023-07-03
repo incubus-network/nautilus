@@ -4,7 +4,7 @@ package fury.feemarket.v1;
 import "gogoproto/gogo.proto";
 import "fury/feemarket/v1/feemarket.proto";
 
-option go_package = "github.com/incubus-network/ethermint/x/feemarket/types";
+option go_package = "github.com/incubus-network/fury/x/feemarket/types";
 
 // GenesisState defines the feemarket module's genesis state.
 message GenesisState {

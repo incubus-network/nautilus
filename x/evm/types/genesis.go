@@ -3,12 +3,12 @@ package types
 import (
 	"fmt"
 
-	ethermint "github.com/incubus-network/ethermint/types"
+	fury "github.com/incubus-network/fury/types"
 )
 
 // Validate performs a basic validation of a GenesisAccount fields.
 func (ga GenesisAccount) Validate() error {
-	if err := ethermint.ValidateAddress(ga.Address); err != nil {
+	if err := fury.ValidateAddress(ga.Address); err != nil {
 		return err
 	}
 	return ga.Storage.Validate()

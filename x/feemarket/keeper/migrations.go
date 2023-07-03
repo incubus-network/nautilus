@@ -3,8 +3,8 @@ package keeper
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	v010 "github.com/incubus-network/ethermint/x/feemarket/migrations/v010"
-	v011 "github.com/incubus-network/ethermint/x/feemarket/migrations/v011"
+	v010 "github.com/incubus-network/fury/x/feemarket/migrations/v010"
+	v011 "github.com/incubus-network/fury/x/feemarket/migrations/v011"
 )
 
 // Migrator is a struct for handling in-place store migrations.

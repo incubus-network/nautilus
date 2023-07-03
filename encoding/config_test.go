@@ -8,10 +8,10 @@ import (
 
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	"github.com/incubus-network/ethermint/app"
-	"github.com/incubus-network/ethermint/encoding"
-	"github.com/incubus-network/ethermint/tests"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/app"
+	"github.com/incubus-network/fury/encoding"
+	"github.com/incubus-network/fury/tests"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 )
 
 func TestTxEncoding(t *testing.T) {

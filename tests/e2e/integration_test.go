@@ -10,10 +10,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
-	"github.com/incubus-network/ethermint/rpc/types"
+	"github.com/incubus-network/fury/rpc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 
 	// . "github.com/onsi/ginkgo/v2"
 	// . "github.com/onsi/gomega"
@@ -29,9 +29,9 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient/gethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/incubus-network/ethermint/server/config"
-	"github.com/incubus-network/ethermint/testutil/network"
-	ethermint "github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/fury/server/config"
+	"github.com/incubus-network/fury/testutil/network"
+	fury "github.com/incubus-network/fury/types"
 )
 
 // var _ = Describe("E2e", func() {
@@ -84,7 +84,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 	s.rpcClient = rpcClient
 	s.gethClient = gethclient.New(rpcClient)
 	s.Require().NotNil(s.gethClient)
-	chainId, err := ethermint.ParseChainID(s.cfg.ChainID)
+	chainId, err := fury.ParseChainID(s.cfg.ChainID)
 	s.Require().NoError(err)
 	s.ethSigner = ethtypes.LatestSignerForChainID(chainId)
 }
@@ -99,9 +99,9 @@ func (s *IntegrationTestSuite) TestChainID() {
 
 	s.T().Log(chainID.Int64())
 
-	eip155ChainID, err := ethermint.ParseChainID(s.network.Config.ChainID)
+	eip155ChainID, err := fury.ParseChainID(s.network.Config.ChainID)
 	s.Require().NoError(err)
-	eip155ChainIDGen, err := ethermint.ParseChainID(genesisRes.Genesis.ChainID)
+	eip155ChainIDGen, err := fury.ParseChainID(genesisRes.Genesis.ChainID)
 	s.Require().NoError(err)
 
 	s.Require().Equal(chainID, eip155ChainID)
@@ -693,7 +693,7 @@ func (s *IntegrationTestSuite) waitForTransaction() {
 	s.Require().NoError(err)
 }
 func TestIntegrationTestSuite(t *testing.T) {
-	// TODO(jbowen93): https://github.com/celestiaorg/ethermint/issues/12
+	// TODO(jbowen93): https://github.com/celestiaorg/fury/issues/12
 	t.Skip()
 	suite.Run(t, new(IntegrationTestSuite))
 }
@@ -731,7 +731,7 @@ func (s *IntegrationTestSuite) TestWeb3Sha3() {
 		})
 	}
 }
-// TODO(jbowen93): https://github.com/celestiaorg/ethermint/issues/12
+// TODO(jbowen93): https://github.com/celestiaorg/fury/issues/12
 func (s *IntegrationTestSuite) TestPendingTransactionFilter() {
 	var (
 		filterID     string

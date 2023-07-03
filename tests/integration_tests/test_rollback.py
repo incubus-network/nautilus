@@ -6,7 +6,7 @@ import pytest
 from pystarport import ports
 from pystarport.cluster import SUPERVISOR_CONFIG_FILE
 
-from .network import setup_custom_ethermint
+from .network import setup_custom_fury
 from .utils import supervisorctl, wait_for_block, wait_for_port
 
 
@@ -35,7 +35,7 @@ def post_init(broken_binary):
 
 
 @pytest.fixture(scope="module")
-def custom_ethermint(tmp_path_factory):
+def custom_fury(tmp_path_factory):
     path = tmp_path_factory.mktemp("rollback")
 
     cmd = [
@@ -50,7 +50,7 @@ def custom_ethermint(tmp_path_factory):
     print(broken_binary)
 
     # init with genesis binary
-    yield from setup_custom_ethermint(
+    yield from setup_custom_fury(
         path,
         26300,
         Path(__file__).parent / "configs/rollback-test.jsonnet",
@@ -59,21 +59,21 @@ def custom_ethermint(tmp_path_factory):
     )
 
 
-def test_rollback(custom_ethermint):
+def test_rollback(custom_fury):
     """
     test using rollback command to fix app-hash mismatch situation.
     - the broken node will sync up to block 10 then crash.
     - use rollback command to rollback the db.
     - switch to correct binary should make the node syncing again.
     """
-    wait_for_port(ports.rpc_port(custom_ethermint.base_port(2)))
+    wait_for_port(ports.rpc_port(custom_fury.base_port(2)))
 
     print("wait for node2 to sync the first 10 blocks")
-    cli2 = custom_ethermint.cosmos_cli(2)
+    cli2 = custom_fury.cosmos_cli(2)
     wait_for_block(cli2, 10)
 
     print("wait for a few more blocks on the healthy nodes")
-    cli = custom_ethermint.cosmos_cli(0)
+    cli = custom_fury.cosmos_cli(0)
     wait_for_block(cli, 13)
 
     # (app hash mismatch happens after the 10th block, detected in the 11th block)
@@ -82,17 +82,17 @@ def test_rollback(custom_ethermint):
 
     print("stop node2")
     supervisorctl(
-        custom_ethermint.base_dir / "../tasks.ini", "stop", "highbury_710-1-node2"
+        custom_fury.base_dir / "../tasks.ini", "stop", "highbury_710-1-node2"
     )
 
     print("do rollback on node2")
     cli2.rollback()
 
     print("switch to normal binary")
-    update_node2_cmd(custom_ethermint.base_dir, "fury", 2)
-    supervisorctl(custom_ethermint.base_dir / "../tasks.ini", "update")
-    wait_for_port(ports.rpc_port(custom_ethermint.base_port(2)))
+    update_node2_cmd(custom_fury.base_dir, "fury", 2)
+    supervisorctl(custom_fury.base_dir / "../tasks.ini", "update")
+    wait_for_port(ports.rpc_port(custom_fury.base_port(2)))
 
     print("check node2 sync again")
-    cli2 = custom_ethermint.cosmos_cli(2)
+    cli2 = custom_fury.cosmos_cli(2)
     wait_for_block(cli2, 15)

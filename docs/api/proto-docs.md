@@ -4,9 +4,9 @@
 
 ## Table of Contents
 
-- [ethermint/crypto/v1/ethsecp256k1/keys.proto](#ethermint/crypto/v1/ethsecp256k1/keys.proto)
-    - [PrivKey](#ethermint.crypto.v1.ethsecp256k1.PrivKey)
-    - [PubKey](#ethermint.crypto.v1.ethsecp256k1.PubKey)
+- [fury/crypto/v1/ethsecp256k1/keys.proto](#fury/crypto/v1/ethsecp256k1/keys.proto)
+    - [PrivKey](#fury.crypto.v1.ethsecp256k1.PrivKey)
+    - [PubKey](#fury.crypto.v1.ethsecp256k1.PubKey)
   
 - [fury/evm/v1/evm.proto](#fury/evm/v1/evm.proto)
     - [AccessTuple](#fury.evm.v1.AccessTuple)
@@ -76,30 +76,30 @@
   
     - [Query](#fury.feemarket.v1.Query)
   
-- [ethermint/types/v1/account.proto](#ethermint/types/v1/account.proto)
-    - [EthAccount](#ethermint.types.v1.EthAccount)
+- [fury/types/v1/account.proto](#fury/types/v1/account.proto)
+    - [EthAccount](#fury.types.v1.EthAccount)
   
-- [ethermint/types/v1/dynamic_fee.proto](#ethermint/types/v1/dynamic_fee.proto)
-    - [ExtensionOptionDynamicFeeTx](#ethermint.types.v1.ExtensionOptionDynamicFeeTx)
+- [fury/types/v1/dynamic_fee.proto](#fury/types/v1/dynamic_fee.proto)
+    - [ExtensionOptionDynamicFeeTx](#fury.types.v1.ExtensionOptionDynamicFeeTx)
   
-- [ethermint/types/v1/indexer.proto](#ethermint/types/v1/indexer.proto)
-    - [TxResult](#ethermint.types.v1.TxResult)
+- [fury/types/v1/indexer.proto](#fury/types/v1/indexer.proto)
+    - [TxResult](#fury.types.v1.TxResult)
   
-- [ethermint/types/v1/web3.proto](#ethermint/types/v1/web3.proto)
-    - [ExtensionOptionsWeb3Tx](#ethermint.types.v1.ExtensionOptionsWeb3Tx)
+- [fury/types/v1/web3.proto](#fury/types/v1/web3.proto)
+    - [ExtensionOptionsWeb3Tx](#fury.types.v1.ExtensionOptionsWeb3Tx)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="ethermint/crypto/v1/ethsecp256k1/keys.proto"></a>
+<a name="fury/crypto/v1/ethsecp256k1/keys.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## ethermint/crypto/v1/ethsecp256k1/keys.proto
+## fury/crypto/v1/ethsecp256k1/keys.proto
 
 
 
-<a name="ethermint.crypto.v1.ethsecp256k1.PrivKey"></a>
+<a name="fury.crypto.v1.ethsecp256k1.PrivKey"></a>
 
 ### PrivKey
 PrivKey defines a type alias for an ecdsa.PrivateKey that implements
@@ -115,7 +115,7 @@ Tendermint's PrivateKey interface.
 
 
 
-<a name="ethermint.crypto.v1.ethsecp256k1.PubKey"></a>
+<a name="fury.crypto.v1.ethsecp256k1.PubKey"></a>
 
 ### PubKey
 PubKey defines a type alias for an ecdsa.PublicKey that implements
@@ -1120,14 +1120,14 @@ Query defines the gRPC querier service.
 
 
 
-<a name="ethermint/types/v1/account.proto"></a>
+<a name="fury/types/v1/account.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## ethermint/types/v1/account.proto
+## fury/types/v1/account.proto
 
 
 
-<a name="ethermint.types.v1.EthAccount"></a>
+<a name="fury.types.v1.EthAccount"></a>
 
 ### EthAccount
 EthAccount implements the authtypes.AccountI interface and embeds an
@@ -1153,14 +1153,14 @@ authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.
 
 
 
-<a name="ethermint/types/v1/dynamic_fee.proto"></a>
+<a name="fury/types/v1/dynamic_fee.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## ethermint/types/v1/dynamic_fee.proto
+## fury/types/v1/dynamic_fee.proto
 
 
 
-<a name="ethermint.types.v1.ExtensionOptionDynamicFeeTx"></a>
+<a name="fury.types.v1.ExtensionOptionDynamicFeeTx"></a>
 
 ### ExtensionOptionDynamicFeeTx
 ExtensionOptionDynamicFeeTx is an extension option that specify the maxPrioPrice for cosmos tx
@@ -1184,14 +1184,14 @@ ExtensionOptionDynamicFeeTx is an extension option that specify the maxPrioPrice
 
 
 
-<a name="ethermint/types/v1/indexer.proto"></a>
+<a name="fury/types/v1/indexer.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## ethermint/types/v1/indexer.proto
+## fury/types/v1/indexer.proto
 
 
 
-<a name="ethermint.types.v1.TxResult"></a>
+<a name="fury.types.v1.TxResult"></a>
 
 ### TxResult
 TxResult is the value stored in eth tx indexer
@@ -1221,14 +1221,14 @@ TxResult is the value stored in eth tx indexer
 
 
 
-<a name="ethermint/types/v1/web3.proto"></a>
+<a name="fury/types/v1/web3.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## ethermint/types/v1/web3.proto
+## fury/types/v1/web3.proto
 
 
 
-<a name="ethermint.types.v1.ExtensionOptionsWeb3Tx"></a>
+<a name="fury.types.v1.ExtensionOptionsWeb3Tx"></a>
 
 ### ExtensionOptionsWeb3Tx
 

@@ -20,10 +20,10 @@ function checkTestEnv() {
   
   const argv = yargs(hideBin(process.argv))
     .usage('Usage: $0 [options] <tests>')
-    .example('$0 --network ethermint', 'run all tests using ethermint network')
-    .example('$0 --network ethermint --allowTests=test1,test2', 'run only test1 and test2 using ethermint network')
+    .example('$0 --network fury', 'run all tests using fury network')
+    .example('$0 --network fury --allowTests=test1,test2', 'run only test1 and test2 using fury network')
     .help('h').alias('h', 'help')
-    .describe('network', 'set which network to use: ganache|ethermint')
+    .describe('network', 'set which network to use: ganache|fury')
     .describe('batch', 'set the test batch in parallelized testing. Format: %d-%d')
     .describe('allowTests', 'only run specified tests. Separated by comma.')
     .boolean('verbose-log').describe('verbose-log', 'print fury output, default false')
@@ -39,8 +39,8 @@ function checkTestEnv() {
     runConfig.network = 'ganache';
   }
   else {
-    if (argv.network !== 'ethermint' && argv.network !== 'ganache') {
-      panic('network is invalid. Must be ganache or ethermint');
+    if (argv.network !== 'fury' && argv.network !== 'ganache') {
+      panic('network is invalid. Must be ganache or fury');
     }
     else {
       runConfig.network = argv.network;
@@ -99,7 +99,7 @@ function loadTests(runConfig) {
     // test package.json
     try {
       const testManifest = JSON.parse(fs.readFileSync(path.join(__dirname, 'suites', dirname, 'package.json'), 'utf-8'))
-      const needScripts = ['test-ganache', 'test-ethermint'];
+      const needScripts = ['test-ganache', 'test-fury'];
       for (const s of needScripts) {
         if (Object.keys(testManifest['scripts']).indexOf(s) === -1) {
           logger.warn(`${dirname} does not have test script: \`${s}\`. Skip this test suite.`);
@@ -132,7 +132,7 @@ function loadTests(runConfig) {
 }
 
 function performTestSuite({ testName, network }) {
-  const cmd = network === 'ganache' ? 'test-ganache' : 'test-ethermint';
+  const cmd = network === 'ganache' ? 'test-ganache' : 'test-fury';
   return new Promise((resolve, reject) => {
     const testProc = spawn('yarn', [cmd], {
       cwd: path.join(__dirname, 'suites', testName)
@@ -168,12 +168,12 @@ async function performTests({ allTests, runConfig }) {
 }
 
 function setupNetwork({ runConfig, timeout }) {
-  if (runConfig.network !== 'ethermint') {
+  if (runConfig.network !== 'fury') {
     // no need to start ganache. Truffle will start it
     return;
   }
 
-  // Spawn the ethermint process
+  // Spawn the fury process
 
   const spawnPromise = new Promise((resolve, reject) => {
     const furyProc = spawn('./init-test-node.sh', {

@@ -6,12 +6,12 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y $PACKAGES
 
 # Set working directory for the build
-WORKDIR /go/src/github.com/incubus-network/ethermint
+WORKDIR /go/src/github.com/incubus-network/fury
 
 # Add source files
 COPY . .
 
-# build Ethermint
+# build Fury
 RUN make build-linux
 
 # Final image
@@ -22,8 +22,8 @@ WORKDIR /
 RUN apt-get update
 
 # Copy over binaries from the build-env
-COPY --from=build-env /go/src/github.com/incubus-network/ethermint/build/fury /
-COPY --from=build-env /go/src/github.com/incubus-network/ethermint/scripts/start-docker.sh /
+COPY --from=build-env /go/src/github.com/incubus-network/fury/build/fury /
+COPY --from=build-env /go/src/github.com/incubus-network/fury/scripts/start-docker.sh /
 
 EXPOSE 26656 26657 1317 8545 8546
 

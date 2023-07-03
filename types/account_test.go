@@ -12,10 +12,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	cryptocodec "github.com/incubus-network/ethermint/crypto/codec"
-	"github.com/incubus-network/ethermint/crypto/ethsecp256k1"
-	ethermintcodec "github.com/incubus-network/ethermint/encoding/codec"
-	"github.com/incubus-network/ethermint/types"
+	cryptocodec "github.com/incubus-network/fury/crypto/codec"
+	"github.com/incubus-network/fury/crypto/ethsecp256k1"
+	furycodec "github.com/incubus-network/fury/encoding/codec"
+	"github.com/incubus-network/fury/types"
 )
 
 func init() {
@@ -42,7 +42,7 @@ func (suite *AccountTestSuite) SetupTest() {
 	}
 
 	interfaceRegistry := codectypes.NewInterfaceRegistry()
-	ethermintcodec.RegisterInterfaces(interfaceRegistry)
+	furycodec.RegisterInterfaces(interfaceRegistry)
 	suite.cdc = codec.NewProtoCodec(interfaceRegistry)
 }
 

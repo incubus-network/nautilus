@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/x/evm/types"
 	"reflect"
 )
 

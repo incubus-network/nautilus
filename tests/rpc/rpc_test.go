@@ -1,4 +1,4 @@
-// This is a test utility for Ethermint's Web3 JSON-RPC services.
+// This is a test utility for Fury's Web3 JSON-RPC services.
 //
 // To run these tests please first ensure you have the fury running
 // and have started the RPC service with `fury rest-server`.
@@ -17,9 +17,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	rpctypes "github.com/incubus-network/ethermint/rpc/types"
-	ethermint "github.com/incubus-network/ethermint/types"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	rpctypes "github.com/incubus-network/fury/rpc/types"
+	fury "github.com/incubus-network/fury/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -136,7 +136,7 @@ func callWithError(method string, params interface{}) (*Response, error) {
 }
 
 func TestEth_protocolVersion(t *testing.T) {
-	expectedRes := hexutil.Uint(ethermint.ProtocolVersion)
+	expectedRes := hexutil.Uint(fury.ProtocolVersion)
 
 	rpcRes := call(t, "eth_protocolVersion", []string{})
 

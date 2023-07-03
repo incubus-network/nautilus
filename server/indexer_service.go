@@ -8,7 +8,7 @@ import (
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 	"github.com/tendermint/tendermint/types"
 
-	ethermint "github.com/incubus-network/ethermint/types"
+	fury "github.com/incubus-network/fury/types"
 )
 
 const (
@@ -21,13 +21,13 @@ const (
 type EVMIndexerService struct {
 	service.BaseService
 
-	txIdxr ethermint.EVMTxIndexer
+	txIdxr fury.EVMTxIndexer
 	client rpcclient.Client
 }
 
 // NewEVMIndexerService returns a new service instance.
 func NewEVMIndexerService(
-	txIdxr ethermint.EVMTxIndexer,
+	txIdxr fury.EVMTxIndexer,
 	client rpcclient.Client,
 ) *EVMIndexerService {
 	is := &EVMIndexerService{txIdxr: txIdxr, client: client}

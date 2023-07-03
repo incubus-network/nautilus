@@ -1,4 +1,4 @@
-module github.com/incubus-network/ethermint
+module github.com/incubus-network/fury
 
 go 1.18
 

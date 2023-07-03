@@ -68,7 +68,7 @@ value: "0x0000000000000000000000000000000000000000000000000000000000000000"
 
 ## JSON-RPC
 
-For an overview on  the JSON-RPC methods and namespaces supported on Ethermint, please refer to [https://docs.ethermint.zone/basics/json_rpc.html](https://docs.ethermint.zone/basics/json_rpc.html)
+For an overview on  the JSON-RPC methods and namespaces supported on Fury, please refer to [https://docs.fury.zone/basics/json_rpc.html](https://docs.fury.zone/basics/json_rpc.html)
 
 ## gRPC
 

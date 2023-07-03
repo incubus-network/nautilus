@@ -10,8 +10,8 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
-	feemarkettypes "github.com/incubus-network/ethermint/x/feemarket/types"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	feemarkettypes "github.com/incubus-network/fury/x/feemarket/types"
 )
 
 // QueryClient defines a gRPC Client used for:

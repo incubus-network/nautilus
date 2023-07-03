@@ -10,9 +10,9 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	ethermint "github.com/incubus-network/ethermint/types"
-	"github.com/incubus-network/ethermint/x/evm/keeper"
-	"github.com/incubus-network/ethermint/x/evm/types"
+	fury "github.com/incubus-network/fury/types"
+	"github.com/incubus-network/fury/x/evm/keeper"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 // InitGenesis initializes genesis state based on exported genesis
@@ -40,7 +40,7 @@ func InitGenesis(
 			panic(fmt.Errorf("account not found for address %s", account.Address))
 		}
 
-		ethAcct, ok := acc.(ethermint.EthAccountI)
+		ethAcct, ok := acc.(fury.EthAccountI)
 		if !ok {
 			panic(
 				fmt.Errorf("account %s must be an EthAccount interface, got %T",
@@ -51,7 +51,7 @@ func InitGenesis(
 		code := common.Hex2Bytes(account.Code)
 		codeHash := crypto.Keccak256Hash(code)
 
-		// we ignore the empty Code hash checking, see ethermint PR#1234
+		// we ignore the empty Code hash checking, see fury PR#1234
 		if len(account.Code) != 0 && !bytes.Equal(ethAcct.GetCodeHash().Bytes(), codeHash.Bytes()) {
 			s := "the evm state code doesn't match with the codehash\n"
 			panic(fmt.Sprintf("%s account: %s , evm state codehash: %v, ethAccount codehash: %v, evm state code: %s\n",
@@ -72,7 +72,7 @@ func InitGenesis(
 func ExportGenesis(ctx sdk.Context, k *keeper.Keeper, ak types.AccountKeeper) *types.GenesisState {
 	var ethGenAccounts []types.GenesisAccount
 	ak.IterateAccounts(ctx, func(account authtypes.AccountI) bool {
-		ethAccount, ok := account.(ethermint.EthAccountI)
+		ethAccount, ok := account.(fury.EthAccountI)
 		if !ok {
 			// ignore non EthAccounts
 			return false

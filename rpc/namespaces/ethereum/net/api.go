@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/cosmos/cosmos-sdk/client"
-	ethermint "github.com/incubus-network/ethermint/types"
+	fury "github.com/incubus-network/fury/types"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 )
 
@@ -18,7 +18,7 @@ type PublicAPI struct {
 // NewPublicAPI creates an instance of the public Net Web3 API.
 func NewPublicAPI(clientCtx client.Context) *PublicAPI {
 	// parse the chainID from a integer string
-	chainIDEpoch, err := ethermint.ParseChainID(clientCtx.ChainID)
+	chainIDEpoch, err := fury.ParseChainID(clientCtx.ChainID)
 	if err != nil {
 		panic(err)
 	}

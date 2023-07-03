@@ -1,5 +1,5 @@
 
-rem ethermint compile on windows
+rem fury compile on windows
 rem install golang , gcc, sed for windows
 rem 1. install msys2 : https://www.msys2.org/
 rem 2. pacman -S mingw-w64-x86_64-toolchain
@@ -35,7 +35,7 @@ fury config chain-id %CHAINID%
 
 fury keys add %KEY% --keyring-backend %KEYRING% --algo %KEYALGO%
 
-rem Set moniker and chain-id for Ethermint (Moniker can be anything, chain-id must be an integer)
+rem Set moniker and chain-id for Fury (Moniker can be anything, chain-id must be an integer)
 fury init %MONIKER% --chain-id %CHAINID% 
 
 rem Change parameter token denominations to axfury

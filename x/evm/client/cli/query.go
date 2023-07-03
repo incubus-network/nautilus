@@ -1,13 +1,13 @@
 package cli
 
 import (
-	rpctypes "github.com/incubus-network/ethermint/rpc/types"
+	rpctypes "github.com/incubus-network/fury/rpc/types"
 	"github.com/spf13/cobra"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/x/evm/types"
 )
 
 // GetQueryCmd returns the parent command for all x/bank CLi query commands.

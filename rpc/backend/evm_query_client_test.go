@@ -9,10 +9,10 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	grpctypes "github.com/cosmos/cosmos-sdk/types/grpc"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/incubus-network/ethermint/rpc/backend/mocks"
-	rpc "github.com/incubus-network/ethermint/rpc/types"
-	"github.com/incubus-network/ethermint/tests"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	"github.com/incubus-network/fury/rpc/backend/mocks"
+	rpc "github.com/incubus-network/fury/rpc/types"
+	"github.com/incubus-network/fury/tests"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
 	mock "github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
@@ -21,9 +21,9 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-// QueryClient defines a mocked object that implements the ethermint GRPC
+// QueryClient defines a mocked object that implements the fury GRPC
 // QueryClient interface. It allows for performing QueryClient queries without having
-// to run a ethermint GRPC server.
+// to run a fury GRPC server.
 //
 // To use a mock method it has to be registered in a given test.
 var _ evmtypes.QueryClient = &mocks.EVMQueryClient{}

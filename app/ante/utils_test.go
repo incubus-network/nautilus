@@ -16,8 +16,8 @@ import (
 	types2 "github.com/cosmos/cosmos-sdk/x/bank/types"
 	types3 "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/incubus-network/ethermint/ethereum/eip712"
-	"github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/fury/ethereum/eip712"
+	"github.com/incubus-network/fury/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
@@ -34,19 +34,19 @@ import (
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	cryptocodec "github.com/incubus-network/ethermint/crypto/codec"
+	cryptocodec "github.com/incubus-network/fury/crypto/codec"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
 	evtypes "github.com/cosmos/cosmos-sdk/x/evidence/types"
 	"github.com/cosmos/cosmos-sdk/x/feegrant"
 	types5 "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
-	"github.com/incubus-network/ethermint/app"
-	ante "github.com/incubus-network/ethermint/app/ante"
-	"github.com/incubus-network/ethermint/encoding"
-	"github.com/incubus-network/ethermint/tests"
-	"github.com/incubus-network/ethermint/x/evm/statedb"
-	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
-	feemarkettypes "github.com/incubus-network/ethermint/x/feemarket/types"
+	"github.com/incubus-network/fury/app"
+	ante "github.com/incubus-network/fury/app/ante"
+	"github.com/incubus-network/fury/encoding"
+	"github.com/incubus-network/fury/tests"
+	"github.com/incubus-network/fury/x/evm/statedb"
+	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	feemarkettypes "github.com/incubus-network/fury/x/feemarket/types"
 
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 )
@@ -55,7 +55,7 @@ type AnteTestSuite struct {
 	suite.Suite
 
 	ctx             sdk.Context
-	app             *app.EthermintApp
+	app             *app.FuryApp
 	clientCtx       client.Context
 	anteHandler     sdk.AnteHandler
 	ethSigner       ethtypes.Signer
@@ -73,7 +73,7 @@ func (suite *AnteTestSuite) StateDB() *statedb.StateDB {
 func (suite *AnteTestSuite) SetupTest() {
 	checkTx := false
 
-	suite.app = app.Setup(checkTx, func(app *app.EthermintApp, genesis simapp.GenesisState) simapp.GenesisState {
+	suite.app = app.Setup(checkTx, func(app *app.FuryApp, genesis simapp.GenesisState) simapp.GenesisState {
 		if suite.enableFeemarket {
 			// setup feemarketGenesis params
 			feemarketGenesis := feemarkettypes.DefaultGenesisState()
@@ -389,17 +389,17 @@ func (suite *AnteTestSuite) CreateTestEIP712CosmosTxBuilder(
 	ethChainId := pc.Uint64()
 
 	// GenerateTypedData TypedData
-	var ethermintCodec codec.ProtoCodecMarshaler
+	var furyCodec codec.ProtoCodecMarshaler
 	registry := codectypes.NewInterfaceRegistry()
 	types.RegisterInterfaces(registry)
-	ethermintCodec = codec.NewProtoCodec(registry)
+	furyCodec = codec.NewProtoCodec(registry)
 	cryptocodec.RegisterInterfaces(registry)
 
 	fee := legacytx.NewStdFee(gas, gasAmount)
 	accNumber := suite.app.AccountKeeper.GetAccount(suite.ctx, from).GetAccountNumber()
 
 	data := legacytx.StdSignBytes(chainId, accNumber, nonce, 0, fee, []sdk.Msg{msg}, "", nil)
-	typedData, err := eip712.WrapTxToTypedData(ethermintCodec, ethChainId, msg, data, &eip712.FeeDelegationOptions{
+	typedData, err := eip712.WrapTxToTypedData(furyCodec, ethChainId, msg, data, &eip712.FeeDelegationOptions{
 		FeePayer: from,
 	})
 	suite.Require().NoError(err)

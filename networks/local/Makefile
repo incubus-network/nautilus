@@ -1,4 +1,4 @@
 all:
-	docker build --no-cache --tag fury/node ../.. -f ethermintnode/Dockerfile
+	docker build --no-cache --tag fury/node ../.. -f furynode/Dockerfile
 
 .PHONY: all
