@@ -31,9 +31,9 @@ COPY docker/entrypoint.sh .
 COPY init.sh .
 
 # Copy over binaries from the build-env
-COPY --from=build-env /src/build/ethermintd /usr/bin/ethermintd
+COPY --from=build-env /src/build/nautid /usr/bin/nautid
 
 EXPOSE 26656 26657
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["ethermintd"]
+CMD ["nautid"]

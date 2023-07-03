@@ -1,7 +1,7 @@
 {
   dotenv: '../../../scripts/.env',
   'highbury_710-1': {
-    cmd: 'ethermintd',
+    cmd: 'nautid',
     'start-flags': '--trace',
     config: {
       consensus: {

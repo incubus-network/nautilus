@@ -9,7 +9,7 @@ LOGLEVEL="info"
 # to trace evm
 TRACE="--trace"
 # TRACE=""
-DIR="${HOME_DIR:-/.ethermintd}"
+DIR="${HOME_DIR:-/.nautid}"
 GENESIS_FILE="${DIR}/config/genesis.json"
 
 # validate dependencies are installed
@@ -19,71 +19,71 @@ command -v jq > /dev/null 2>&1 || { echo >&2 "jq not installed. More info: https
 if [[ ! -f "$GENESIS_FILE" ]]; then
 
   # remove existing daemon and client
-  rm -rf ~/.ethermintd*
+  rm -rf ~/.nautid*
 
-  ethermintd config keyring-backend $KEYRING
-  ethermintd config chain-id $CHAINID
+  nautid config keyring-backend $KEYRING
+  nautid config chain-id $CHAINID
 
   # if $KEY exists it should be deleted
-  ethermintd keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO
+  nautid keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO
 
   # Set moniker and chain-id for Ethermint (Moniker can be anything, chain-id must be an integer)
-  ethermintd init $MONIKER --chain-id $CHAINID
+  nautid init $MONIKER --chain-id $CHAINID
 
   # Change parameter token denominations to avblack
-  cat $HOME/.ethermintd/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="avblack"' > $HOME/.ethermintd/config/tmp_genesis.json && mv $HOME/.ethermintd/config/tmp_genesis.json $HOME/.ethermintd/config/genesis.json
-  cat $HOME/.ethermintd/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="avblack"' > $HOME/.ethermintd/config/tmp_genesis.json && mv $HOME/.ethermintd/config/tmp_genesis.json $HOME/.ethermintd/config/genesis.json
-  cat $HOME/.ethermintd/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="avblack"' > $HOME/.ethermintd/config/tmp_genesis.json && mv $HOME/.ethermintd/config/tmp_genesis.json $HOME/.ethermintd/config/genesis.json
-  cat $HOME/.ethermintd/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="avblack"' > $HOME/.ethermintd/config/tmp_genesis.json && mv $HOME/.ethermintd/config/tmp_genesis.json $HOME/.ethermintd/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
 
   # increase block time (?)
-  cat $HOME/.ethermintd/config/genesis.json | jq '.consensus_params["block"]["time_iota_ms"]="1000"' > $HOME/.ethermintd/config/tmp_genesis.json && mv $HOME/.ethermintd/config/tmp_genesis.json $HOME/.ethermintd/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.consensus_params["block"]["time_iota_ms"]="1000"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
 
   # Set gas limit in genesis
-  cat $HOME/.ethermintd/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > $HOME/.ethermintd/config/tmp_genesis.json && mv $HOME/.ethermintd/config/tmp_genesis.json $HOME/.ethermintd/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
 
   # disable produce empty block
   if [[ "$OSTYPE" == "darwin"* ]]; then
-      sed -i '' 's/create_empty_blocks = true/create_empty_blocks = false/g' $HOME/.ethermintd/config/config.toml
+      sed -i '' 's/create_empty_blocks = true/create_empty_blocks = false/g' $HOME/.nautid/config/config.toml
     else
-      sed -i 's/create_empty_blocks = true/create_empty_blocks = false/g' $HOME/.ethermintd/config/config.toml
+      sed -i 's/create_empty_blocks = true/create_empty_blocks = false/g' $HOME/.nautid/config/config.toml
   fi
 
   if [[ $1 == "pending" ]]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' 's/create_empty_blocks_interval = "0s"/create_empty_blocks_interval = "30s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_propose = "3s"/timeout_propose = "30s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_propose_delta = "500ms"/timeout_propose_delta = "5s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_prevote = "1s"/timeout_prevote = "10s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_prevote_delta = "500ms"/timeout_prevote_delta = "5s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_precommit = "1s"/timeout_precommit = "10s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_precommit_delta = "500ms"/timeout_precommit_delta = "5s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_commit = "5s"/timeout_commit = "150s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i '' 's/timeout_broadcast_tx_commit = "10s"/timeout_broadcast_tx_commit = "150s"/g' $HOME/.ethermintd/config/config.toml
+        sed -i '' 's/create_empty_blocks_interval = "0s"/create_empty_blocks_interval = "30s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_propose = "3s"/timeout_propose = "30s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_propose_delta = "500ms"/timeout_propose_delta = "5s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_prevote = "1s"/timeout_prevote = "10s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_prevote_delta = "500ms"/timeout_prevote_delta = "5s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_precommit = "1s"/timeout_precommit = "10s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_precommit_delta = "500ms"/timeout_precommit_delta = "5s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_commit = "5s"/timeout_commit = "150s"/g' $HOME/.nautid/config/config.toml
+        sed -i '' 's/timeout_broadcast_tx_commit = "10s"/timeout_broadcast_tx_commit = "150s"/g' $HOME/.nautid/config/config.toml
     else
-        sed -i 's/create_empty_blocks_interval = "0s"/create_empty_blocks_interval = "30s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_propose = "3s"/timeout_propose = "30s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_propose_delta = "500ms"/timeout_propose_delta = "5s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_prevote = "1s"/timeout_prevote = "10s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_prevote_delta = "500ms"/timeout_prevote_delta = "5s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_precommit = "1s"/timeout_precommit = "10s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_precommit_delta = "500ms"/timeout_precommit_delta = "5s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_commit = "5s"/timeout_commit = "150s"/g' $HOME/.ethermintd/config/config.toml
-        sed -i 's/timeout_broadcast_tx_commit = "10s"/timeout_broadcast_tx_commit = "150s"/g' $HOME/.ethermintd/config/config.toml
+        sed -i 's/create_empty_blocks_interval = "0s"/create_empty_blocks_interval = "30s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_propose = "3s"/timeout_propose = "30s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_propose_delta = "500ms"/timeout_propose_delta = "5s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_prevote = "1s"/timeout_prevote = "10s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_prevote_delta = "500ms"/timeout_prevote_delta = "5s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_precommit = "1s"/timeout_precommit = "10s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_precommit_delta = "500ms"/timeout_precommit_delta = "5s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_commit = "5s"/timeout_commit = "150s"/g' $HOME/.nautid/config/config.toml
+        sed -i 's/timeout_broadcast_tx_commit = "10s"/timeout_broadcast_tx_commit = "150s"/g' $HOME/.nautid/config/config.toml
     fi
   fi
 
   # Allocate genesis accounts (cosmos formatted addresses)
-  ethermintd add-genesis-account $KEY 100000000000000000000000000avblack --keyring-backend $KEYRING
+  nautid add-genesis-account $KEY 100000000000000000000000000avblack --keyring-backend $KEYRING
 
   # Sign genesis transaction
-  ethermintd gentx $KEY 1000000000000000000000avblack --keyring-backend $KEYRING --chain-id $CHAINID
+  nautid gentx $KEY 1000000000000000000000avblack --keyring-backend $KEYRING --chain-id $CHAINID
 
   # Collect genesis tx
-  ethermintd collect-gentxs
+  nautid collect-gentxs
 
   # Run this to ensure everything worked and that the genesis file is setup correctly
-  ethermintd validate-genesis
+  nautid validate-genesis
 else
   # We already have a genesis.json file so create an empty priv_validator_state.json
   mkdir $DIR/data
@@ -96,6 +96,6 @@ else
 EOF
 
 # Run this to ensure everything the genesis file is setup correctly
-ethermintd validate-genesis $GENESIS_FILE
+nautid validate-genesis $GENESIS_FILE
 
 fi

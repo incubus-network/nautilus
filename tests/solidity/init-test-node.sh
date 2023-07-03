@@ -27,35 +27,35 @@ USER4_MNEMONIC="doll midnight silk carpet brush boring pluck office gown inquiry
 rm -rf ~/.ethermint*
 
 # Import keys from mnemonics
-echo $VAL_MNEMONIC   | ethermintd keys add $VAL_KEY   --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER1_MNEMONIC | ethermintd keys add $USER1_KEY --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER2_MNEMONIC | ethermintd keys add $USER2_KEY --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER3_MNEMONIC | ethermintd keys add $USER3_KEY --recover --keyring-backend test --algo "eth_secp256k1"
-echo $USER4_MNEMONIC | ethermintd keys add $USER4_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $VAL_MNEMONIC   | nautid keys add $VAL_KEY   --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER1_MNEMONIC | nautid keys add $USER1_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER2_MNEMONIC | nautid keys add $USER2_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER3_MNEMONIC | nautid keys add $USER3_KEY --recover --keyring-backend test --algo "eth_secp256k1"
+echo $USER4_MNEMONIC | nautid keys add $USER4_KEY --recover --keyring-backend test --algo "eth_secp256k1"
 
-ethermintd init $MONIKER --chain-id $CHAINID
+nautid init $MONIKER --chain-id $CHAINID
 
 # Set gas limit in genesis
-cat $HOME/.ethermintd/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > $HOME/.ethermintd/config/tmp_genesis.json && mv $HOME/.ethermintd/config/tmp_genesis.json $HOME/.ethermintd/config/genesis.json
+cat $HOME/.nautid/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
 
 # Reduce the block time to 1s
-sed -i -e '/^timeout_commit =/ s/= .*/= "850ms"/' $HOME/.ethermintd/config/config.toml
+sed -i -e '/^timeout_commit =/ s/= .*/= "850ms"/' $HOME/.nautid/config/config.toml
 
 # Allocate genesis accounts (cosmos formatted addresses)
-ethermintd add-genesis-account "$(ethermintd keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-ethermintd add-genesis-account "$(ethermintd keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-ethermintd add-genesis-account "$(ethermintd keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-ethermintd add-genesis-account "$(ethermintd keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-ethermintd add-genesis-account "$(ethermintd keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
 
 # Sign genesis transaction
-ethermintd gentx $VAL_KEY 1000000000000000000stake --amount=1000000000000000000000avblack --chain-id $CHAINID --keyring-backend test
+nautid gentx $VAL_KEY 1000000000000000000stake --amount=1000000000000000000000avblack --chain-id $CHAINID --keyring-backend test
 
 # Collect genesis tx
-ethermintd collect-gentxs
+nautid collect-gentxs
 
 # Run this to ensure everything worked and that the genesis file is setup correctly
-ethermintd validate-genesis
+nautid validate-genesis
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-ethermintd start --pruning=nothing --rpc.unsafe --keyring-backend test --log_level info --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable
+nautid start --pruning=nothing --rpc.unsafe --keyring-backend test --log_level info --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable

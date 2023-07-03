@@ -14,9 +14,9 @@ faucet:
   coins: ["1000000000000000000000000000avblack"]
   coins_max: ["100000000avblack"]
 build:
-  binary: "ethermintd"
+  binary: "nautid"
 init:
-  home: "$HOME/.ethermintd"
+  home: "$HOME/.nautid"
   app:
     api:
       enable: true

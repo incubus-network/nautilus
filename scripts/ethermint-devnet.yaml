@@ -1,6 +1,6 @@
 dotenv: .env
 highbury_710-1:
-  cmd: ethermintd
+  cmd: nautid
   start-flags: "--trace"
   app-config:
     minimum-gas-prices: 0avblack
