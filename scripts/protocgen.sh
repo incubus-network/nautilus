@@ -40,5 +40,5 @@ $(find "$(pwd)/proto" -maxdepth 5 -name '*.proto')
 # go mod tidy
 
 # move proto files to the right places
-cp -r github.com/incubus-network/fury/* ./
+cp -r github.com/evmos/ethermint/* ./
 rm -rf github.com

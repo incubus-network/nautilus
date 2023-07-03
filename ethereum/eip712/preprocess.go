@@ -8,7 +8,7 @@ import (
 	cosmoskr "github.com/cosmos/cosmos-sdk/crypto/keyring"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
-	"github.com/incubus-network/fury/types"
+	"github.com/evmos/ethermint/types"
 )
 
 // PreprocessLedgerTx reformats Ledger-signed Cosmos transactions to match the fork expected by Fury

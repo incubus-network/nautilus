@@ -12,10 +12,10 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 
-	fury "github.com/incubus-network/fury/types"
-	evmkeeper "github.com/incubus-network/fury/x/evm/keeper"
-	"github.com/incubus-network/fury/x/evm/statedb"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	fury "github.com/evmos/ethermint/types"
+	evmkeeper "github.com/evmos/ethermint/x/evm/keeper"
+	"github.com/evmos/ethermint/x/evm/statedb"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"

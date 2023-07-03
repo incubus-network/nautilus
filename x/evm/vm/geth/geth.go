@@ -7,7 +7,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/vm"
 	"github.com/ethereum/go-ethereum/params"
 
-	evm "github.com/incubus-network/fury/x/evm/vm"
+	evm "github.com/evmos/ethermint/x/evm/vm"
 )
 
 var (

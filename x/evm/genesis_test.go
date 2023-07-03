@@ -6,11 +6,11 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/incubus-network/fury/crypto/ethsecp256k1"
-	furytypes "github.com/incubus-network/fury/types"
-	"github.com/incubus-network/fury/x/evm"
-	"github.com/incubus-network/fury/x/evm/statedb"
-	"github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/crypto/ethsecp256k1"
+	furytypes "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm"
+	"github.com/evmos/ethermint/x/evm/statedb"
+	"github.com/evmos/ethermint/x/evm/types"
 )
 
 func (suite *EvmTestSuite) TestInitGenesis() {

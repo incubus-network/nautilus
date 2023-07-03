@@ -8,7 +8,7 @@ import (
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 	"github.com/tendermint/tendermint/types"
 
-	fury "github.com/incubus-network/fury/types"
+	fury "github.com/evmos/ethermint/types"
 )
 
 const (

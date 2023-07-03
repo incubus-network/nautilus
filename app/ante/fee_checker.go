@@ -9,8 +9,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authante "github.com/cosmos/cosmos-sdk/x/auth/ante"
-	fury "github.com/incubus-network/fury/types"
-	"github.com/incubus-network/fury/x/evm/types"
+	fury "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm/types"
 )
 
 // NewDynamicFeeChecker returns a `TxFeeChecker` that applies a dynamic fee to

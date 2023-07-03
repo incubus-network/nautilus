@@ -16,10 +16,10 @@ import (
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/tendermint/tendermint/libs/log"
 
-	fury "github.com/incubus-network/fury/types"
-	"github.com/incubus-network/fury/x/evm/statedb"
-	"github.com/incubus-network/fury/x/evm/types"
-	evm "github.com/incubus-network/fury/x/evm/vm"
+	fury "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm/statedb"
+	"github.com/evmos/ethermint/x/evm/types"
+	evm "github.com/evmos/ethermint/x/evm/vm"
 )
 
 // Keeper grants access to the EVM module state and implements the go-ethereum StateDB interface.

@@ -10,9 +10,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/ethereum/go-ethereum/common"
-	fury "github.com/incubus-network/fury/types"
-	"github.com/incubus-network/fury/x/evm/statedb"
-	"github.com/incubus-network/fury/x/evm/types"
+	fury "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm/statedb"
+	"github.com/evmos/ethermint/x/evm/types"
 )
 
 var _ statedb.Keeper = &Keeper{}

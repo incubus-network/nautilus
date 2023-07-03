@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/incubus-network/fury/x/feemarket/types"
+	"github.com/evmos/ethermint/x/feemarket/types"
 	"reflect"
 )
 

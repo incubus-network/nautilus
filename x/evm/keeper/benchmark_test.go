@@ -12,8 +12,8 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	fury "github.com/incubus-network/fury/types"
-	"github.com/incubus-network/fury/x/evm/types"
+	fury "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm/types"
 )
 
 func SetupContract(b *testing.B) (*KeeperTestSuite, common.Address) {

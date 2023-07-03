@@ -18,9 +18,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 
-	"github.com/incubus-network/fury/crypto/hd"
-	fury "github.com/incubus-network/fury/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/crypto/hd"
+	fury "github.com/evmos/ethermint/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 )
 
 const (

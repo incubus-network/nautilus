@@ -28,7 +28,7 @@ buildGoApplication rec {
 
   meta = with lib; {
     description = "Fury is a scalable and interoperable Ethereum library, built on Proof-of-Stake with fast-finality using the Cosmos SDK which runs on top of Tendermint Core consensus engine.";
-    homepage = "https://github.com/incubus-network/fury";
+    homepage = "https://github.com/evmos/ethermint";
     license = licenses.asl20;
     mainProgram = "fury";
   };

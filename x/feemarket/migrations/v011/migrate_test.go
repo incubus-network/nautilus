@@ -10,13 +10,13 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
-	"github.com/incubus-network/fury/encoding"
+	"github.com/evmos/ethermint/encoding"
 
-	"github.com/incubus-network/fury/app"
-	v010types "github.com/incubus-network/fury/x/feemarket/migrations/v010/types"
-	v011 "github.com/incubus-network/fury/x/feemarket/migrations/v011"
-	"github.com/incubus-network/fury/x/feemarket/types"
-	feemarkettypes "github.com/incubus-network/fury/x/feemarket/types"
+	"github.com/evmos/ethermint/app"
+	v010types "github.com/evmos/ethermint/x/feemarket/migrations/v010/types"
+	v011 "github.com/evmos/ethermint/x/feemarket/migrations/v011"
+	"github.com/evmos/ethermint/x/feemarket/types"
+	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
 )
 
 func init() {

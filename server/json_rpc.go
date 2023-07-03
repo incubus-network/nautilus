@@ -12,10 +12,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/types"
 	ethlog "github.com/ethereum/go-ethereum/log"
 	ethrpc "github.com/ethereum/go-ethereum/rpc"
-	"github.com/incubus-network/fury/rpc"
+	"github.com/evmos/ethermint/rpc"
 
-	"github.com/incubus-network/fury/server/config"
-	fury "github.com/incubus-network/fury/types"
+	"github.com/evmos/ethermint/server/config"
+	fury "github.com/evmos/ethermint/types"
 )
 
 // StartJSONRPC starts the JSON-RPC server

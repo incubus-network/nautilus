@@ -38,13 +38,13 @@ import (
 	mintypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/incubus-network/fury/crypto/hd"
-	"github.com/incubus-network/fury/server/config"
-	srvflags "github.com/incubus-network/fury/server/flags"
-	fury "github.com/incubus-network/fury/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/crypto/hd"
+	"github.com/evmos/ethermint/server/config"
+	srvflags "github.com/evmos/ethermint/server/flags"
+	fury "github.com/evmos/ethermint/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
-	"github.com/incubus-network/fury/testutil/network"
+	"github.com/evmos/ethermint/testutil/network"
 )
 
 var (

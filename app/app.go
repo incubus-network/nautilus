@@ -98,18 +98,18 @@ import (
 	ibckeeper "github.com/cosmos/ibc-go/v5/modules/core/keeper"
 
 	// unnamed import of statik for swagger UI support
-	_ "github.com/incubus-network/fury/client/docs/statik"
+	_ "github.com/evmos/ethermint/client/docs/statik"
 
-	"github.com/incubus-network/fury/app/ante"
-	srvflags "github.com/incubus-network/fury/server/flags"
-	fury "github.com/incubus-network/fury/types"
-	"github.com/incubus-network/fury/x/evm"
-	evmkeeper "github.com/incubus-network/fury/x/evm/keeper"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
-	"github.com/incubus-network/fury/x/evm/vm/geth"
-	"github.com/incubus-network/fury/x/feemarket"
-	feemarketkeeper "github.com/incubus-network/fury/x/feemarket/keeper"
-	feemarkettypes "github.com/incubus-network/fury/x/feemarket/types"
+	"github.com/evmos/ethermint/app/ante"
+	srvflags "github.com/evmos/ethermint/server/flags"
+	fury "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm"
+	evmkeeper "github.com/evmos/ethermint/x/evm/keeper"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
+	"github.com/evmos/ethermint/x/evm/vm/geth"
+	"github.com/evmos/ethermint/x/feemarket"
+	feemarketkeeper "github.com/evmos/ethermint/x/feemarket/keeper"
+	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
 
 	// Force-load the tracer engines to trigger registration due to Go-Ethereum v1.10.15 changes
 	_ "github.com/ethereum/go-ethereum/eth/tracers/js"

@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/incubus-network/fury/version"
+	"github.com/evmos/ethermint/version"
 )
 
 const (

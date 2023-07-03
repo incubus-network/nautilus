@@ -6,11 +6,11 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/incubus-network/fury/app/ante"
-	"github.com/incubus-network/fury/server/config"
-	"github.com/incubus-network/fury/tests"
-	"github.com/incubus-network/fury/x/evm/statedb"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/app/ante"
+	"github.com/evmos/ethermint/server/config"
+	"github.com/evmos/ethermint/tests"
+	"github.com/evmos/ethermint/x/evm/statedb"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 )

@@ -25,9 +25,9 @@ import (
 	"github.com/ethereum/go-ethereum/core/vm"
 	ethparams "github.com/ethereum/go-ethereum/params"
 
-	fury "github.com/incubus-network/fury/types"
-	"github.com/incubus-network/fury/x/evm/statedb"
-	"github.com/incubus-network/fury/x/evm/types"
+	fury "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm/statedb"
+	"github.com/evmos/ethermint/x/evm/types"
 )
 
 var _ types.QueryServer = Keeper{}

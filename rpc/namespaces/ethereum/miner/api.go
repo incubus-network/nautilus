@@ -8,7 +8,7 @@ import (
 
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/incubus-network/fury/rpc/backend"
+	"github.com/evmos/ethermint/rpc/backend"
 )
 
 // API is the private miner prefixed set of APIs in the Miner JSON-RPC spec.

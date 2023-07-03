@@ -13,12 +13,12 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	"github.com/incubus-network/fury/app"
-	"github.com/incubus-network/fury/encoding"
-	"github.com/incubus-network/fury/ethereum/eip712"
-	"github.com/incubus-network/fury/tests"
-	"github.com/incubus-network/fury/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/app"
+	"github.com/evmos/ethermint/encoding"
+	"github.com/evmos/ethermint/ethereum/eip712"
+	"github.com/evmos/ethermint/tests"
+	"github.com/evmos/ethermint/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 	"github.com/stretchr/testify/require"
 )
 

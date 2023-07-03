@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/incubus-network/fury/rpc/backend"
-	"github.com/incubus-network/fury/rpc/types"
+	"github.com/evmos/ethermint/rpc/backend"
+	"github.com/evmos/ethermint/rpc/types"
 
 	"github.com/pkg/errors"
 	"github.com/tendermint/tendermint/libs/log"

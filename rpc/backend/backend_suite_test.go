@@ -19,14 +19,14 @@ import (
 	"github.com/stretchr/testify/suite"
 	tmrpctypes "github.com/tendermint/tendermint/rpc/core/types"
 
-	"github.com/incubus-network/fury/app"
-	"github.com/incubus-network/fury/crypto/hd"
-	"github.com/incubus-network/fury/encoding"
-	"github.com/incubus-network/fury/indexer"
-	"github.com/incubus-network/fury/rpc/backend/mocks"
-	rpctypes "github.com/incubus-network/fury/rpc/types"
-	"github.com/incubus-network/fury/tests"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/app"
+	"github.com/evmos/ethermint/crypto/hd"
+	"github.com/evmos/ethermint/encoding"
+	"github.com/evmos/ethermint/indexer"
+	"github.com/evmos/ethermint/rpc/backend/mocks"
+	rpctypes "github.com/evmos/ethermint/rpc/types"
+	"github.com/evmos/ethermint/tests"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 )
 
 type BackendTestSuite struct {

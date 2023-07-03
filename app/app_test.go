@@ -11,7 +11,7 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/incubus-network/fury/encoding"
+	"github.com/evmos/ethermint/encoding"
 )
 
 func TestFuryAppExport(t *testing.T) {

@@ -9,7 +9,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	"github.com/incubus-network/fury/types"
+	"github.com/evmos/ethermint/types"
 )
 
 func newDynamicFeeTx(tx *ethtypes.Transaction) (*DynamicFeeTx, error) {

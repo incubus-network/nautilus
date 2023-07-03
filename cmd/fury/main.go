@@ -7,8 +7,8 @@ import (
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/incubus-network/fury/app"
-	cmdcfg "github.com/incubus-network/fury/cmd/config"
+	"github.com/evmos/ethermint/app"
+	cmdcfg "github.com/evmos/ethermint/cmd/config"
 )
 
 func main() {

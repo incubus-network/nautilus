@@ -17,7 +17,7 @@ import (
 
 	grpctypes "github.com/cosmos/cosmos-sdk/types/grpc"
 
-	fury "github.com/incubus-network/fury/types"
+	fury "github.com/evmos/ethermint/types"
 )
 
 // BlockNumber represents decoding hex string to block values

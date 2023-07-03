@@ -1,9 +1,9 @@
 let
   pkgs = import ../../../nix { };
-  fetchFury = rev: builtins.fetchTarball "https://github.com/incubus-network/fury/archive/${rev}.tar.gz";
+  fetchFury = rev: builtins.fetchTarball "https://github.com/evmos/ethermint/archive/${rev}.tar.gz";
   released = pkgs.buildGo118Module rec {
     name = "fury";
-    # the commit before https://github.com/incubus-network/fury/pull/943
+    # the commit before https://github.com/evmos/ethermint/pull/943
     src = fetchFury "f21592ebfe74da7590eb42ed926dae970b2a9a3f";
     subPackages = [ "cmd/fury" ];
     vendorSha256 = "sha256-ABm5t6R/u2S6pThGrgdsqe8n3fH5tIWw7a57kxJPbYw=";

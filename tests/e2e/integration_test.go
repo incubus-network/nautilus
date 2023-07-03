@@ -10,10 +10,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
-	"github.com/incubus-network/fury/rpc/types"
+	"github.com/evmos/ethermint/rpc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
 	// . "github.com/onsi/ginkgo/v2"
 	// . "github.com/onsi/gomega"
@@ -29,9 +29,9 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient/gethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/incubus-network/fury/server/config"
-	"github.com/incubus-network/fury/testutil/network"
-	fury "github.com/incubus-network/fury/types"
+	"github.com/evmos/ethermint/server/config"
+	"github.com/evmos/ethermint/testutil/network"
+	fury "github.com/evmos/ethermint/types"
 )
 
 // var _ = Describe("E2e", func() {

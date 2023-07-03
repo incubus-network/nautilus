@@ -3,7 +3,7 @@ package config
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	fury "github.com/incubus-network/fury/types"
+	fury "github.com/evmos/ethermint/types"
 )
 
 const (

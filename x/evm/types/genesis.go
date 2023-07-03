@@ -3,7 +3,7 @@ package types
 import (
 	"fmt"
 
-	fury "github.com/incubus-network/fury/types"
+	fury "github.com/evmos/ethermint/types"
 )
 
 // Validate performs a basic validation of a GenesisAccount fields.

@@ -15,10 +15,10 @@ import (
 
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
-	"github.com/incubus-network/fury/crypto/ethsecp256k1"
-	"github.com/incubus-network/fury/ethereum/eip712"
-	fury "github.com/incubus-network/fury/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/crypto/ethsecp256k1"
+	"github.com/evmos/ethermint/ethereum/eip712"
+	fury "github.com/evmos/ethermint/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 )
 
 var furyCodec codec.ProtoCodecMarshaler

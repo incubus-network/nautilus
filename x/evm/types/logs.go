@@ -7,7 +7,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	fury "github.com/incubus-network/fury/types"
+	fury "github.com/evmos/ethermint/types"
 )
 
 // NewTransactionLogs creates a new NewTransactionLogs instance.

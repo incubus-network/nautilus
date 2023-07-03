@@ -13,7 +13,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/incubus-network/fury/encoding"
+	"github.com/evmos/ethermint/encoding"
 )
 
 // NewDefaultGenesisState generates the default state for the application.

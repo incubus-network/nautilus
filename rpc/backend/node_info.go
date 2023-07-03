@@ -18,11 +18,11 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/incubus-network/fury/crypto/ethsecp256k1"
-	rpctypes "github.com/incubus-network/fury/rpc/types"
-	"github.com/incubus-network/fury/server/config"
-	fury "github.com/incubus-network/fury/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/crypto/ethsecp256k1"
+	rpctypes "github.com/evmos/ethermint/rpc/types"
+	"github.com/evmos/ethermint/server/config"
+	fury "github.com/evmos/ethermint/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 	tmtypes "github.com/tendermint/tendermint/types"
 )
 

@@ -48,13 +48,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/incubus-network/fury/crypto/hd"
-	"github.com/incubus-network/fury/encoding"
-	"github.com/incubus-network/fury/server/config"
-	fury "github.com/incubus-network/fury/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	"github.com/evmos/ethermint/crypto/hd"
+	"github.com/evmos/ethermint/encoding"
+	"github.com/evmos/ethermint/server/config"
+	fury "github.com/evmos/ethermint/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
-	"github.com/incubus-network/fury/app"
+	"github.com/evmos/ethermint/app"
 
 	rollnode "github.com/rollkit/rollkit/node"
 )

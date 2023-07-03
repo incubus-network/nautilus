@@ -14,10 +14,10 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	evmtypes "github.com/incubus-network/fury/x/evm/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
-	"github.com/incubus-network/fury/crypto/ethsecp256k1"
-	fury "github.com/incubus-network/fury/types"
+	"github.com/evmos/ethermint/crypto/ethsecp256k1"
+	fury "github.com/evmos/ethermint/types"
 
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"

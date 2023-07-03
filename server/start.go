@@ -44,11 +44,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/incubus-network/fury/indexer"
-	ethdebug "github.com/incubus-network/fury/rpc/namespaces/ethereum/debug"
-	"github.com/incubus-network/fury/server/config"
-	srvflags "github.com/incubus-network/fury/server/flags"
-	fury "github.com/incubus-network/fury/types"
+	"github.com/evmos/ethermint/indexer"
+	ethdebug "github.com/evmos/ethermint/rpc/namespaces/ethereum/debug"
+	"github.com/evmos/ethermint/server/config"
+	srvflags "github.com/evmos/ethermint/server/flags"
+	fury "github.com/evmos/ethermint/types"
 
 	rollconf "github.com/rollkit/rollkit/config"
 	rollconv "github.com/rollkit/rollkit/conv"
