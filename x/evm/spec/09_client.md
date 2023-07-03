@@ -76,32 +76,32 @@ For an overview on  the JSON-RPC methods and namespaces supported on Ethermint, 
 
 | Verb   | Method                                               | Description                                                                |
 | ------ | ---------------------------------------------------- | -------------------------------------------------------------------------- |
-| `gRPC` | `ethermint.evm.v1.Query/Account`                     | Get an Ethereum account                                                    |
-| `gRPC` | `ethermint.evm.v1.Query/CosmosAccount`               | Get an Ethereum account's Cosmos Address                                   |
-| `gRPC` | `ethermint.evm.v1.Query/ValidatorAccount`            | Get an Ethereum account's from a validator consensus Address               |
-| `gRPC` | `ethermint.evm.v1.Query/Balance`                     | Get the balance of a the EVM denomination for a single EthAccount.         |
-| `gRPC` | `ethermint.evm.v1.Query/Storage`                     | Get the balance of all coins for a single account                          |
-| `gRPC` | `ethermint.evm.v1.Query/Code`                        | Get the balance of all coins for a single account                          |
-| `gRPC` | `ethermint.evm.v1.Query/Params`                      | Get the parameters of x/evm module                                         |
-| `gRPC` | `ethermint.evm.v1.Query/EthCall`                     | Implements the eth_call rpc api                                            |
-| `gRPC` | `ethermint.evm.v1.Query/EstimateGas`                 | Implements the eth_estimateGas rpc api                                     |
-| `gRPC` | `ethermint.evm.v1.Query/TraceTx`                     | Implements the debug_traceTransaction rpc api                              |
-| `gRPC` | `ethermint.evm.v1.Query/TraceBlock`                  | Implements the debug_traceBlockByNumber and debug_traceBlockByHash rpc api |
-| `GET`  | `/ethermint/evm/v1/account/{address}`                | Get an Ethereum account                                                    |
-| `GET`  | `/ethermint/evm/v1/cosmos_account/{address}`         | Get an Ethereum account's Cosmos Address                                   |
-| `GET`  | `/ethermint/evm/v1/validator_account/{cons_address}` | Get an Ethereum account's from a validator consensus Address               |
-| `GET`  | `/ethermint/evm/v1/balances/{address}`               | Get the balance of a the EVM denomination for a single EthAccount.         |
-| `GET`  | `/ethermint/evm/v1/storage/{address}/{key}`          | Get the balance of all coins for a single account                          |
-| `GET`  | `/ethermint/evm/v1/codes/{address}`                  | Get the balance of all coins for a single account                          |
-| `GET`  | `/ethermint/evm/v1/params`                           | Get the parameters of x/evm module                                         |
-| `GET`  | `/ethermint/evm/v1/eth_call`                         | Implements the eth_call rpc api                                            |
-| `GET`  | `/ethermint/evm/v1/estimate_gas`                     | Implements the eth_estimateGas rpc api                                     |
-| `GET`  | `/ethermint/evm/v1/trace_tx`                         | Implements the debug_traceTransaction rpc api                              |
-| `GET`  | `/ethermint/evm/v1/trace_block`                      | Implements the debug_traceBlockByNumber and debug_traceBlockByHash rpc api |
+| `gRPC` | `fury.evm.v1.Query/Account`                     | Get an Ethereum account                                                    |
+| `gRPC` | `fury.evm.v1.Query/CosmosAccount`               | Get an Ethereum account's Cosmos Address                                   |
+| `gRPC` | `fury.evm.v1.Query/ValidatorAccount`            | Get an Ethereum account's from a validator consensus Address               |
+| `gRPC` | `fury.evm.v1.Query/Balance`                     | Get the balance of a the EVM denomination for a single EthAccount.         |
+| `gRPC` | `fury.evm.v1.Query/Storage`                     | Get the balance of all coins for a single account                          |
+| `gRPC` | `fury.evm.v1.Query/Code`                        | Get the balance of all coins for a single account                          |
+| `gRPC` | `fury.evm.v1.Query/Params`                      | Get the parameters of x/evm module                                         |
+| `gRPC` | `fury.evm.v1.Query/EthCall`                     | Implements the eth_call rpc api                                            |
+| `gRPC` | `fury.evm.v1.Query/EstimateGas`                 | Implements the eth_estimateGas rpc api                                     |
+| `gRPC` | `fury.evm.v1.Query/TraceTx`                     | Implements the debug_traceTransaction rpc api                              |
+| `gRPC` | `fury.evm.v1.Query/TraceBlock`                  | Implements the debug_traceBlockByNumber and debug_traceBlockByHash rpc api |
+| `GET`  | `/fury/evm/v1/account/{address}`                | Get an Ethereum account                                                    |
+| `GET`  | `/fury/evm/v1/cosmos_account/{address}`         | Get an Ethereum account's Cosmos Address                                   |
+| `GET`  | `/fury/evm/v1/validator_account/{cons_address}` | Get an Ethereum account's from a validator consensus Address               |
+| `GET`  | `/fury/evm/v1/balances/{address}`               | Get the balance of a the EVM denomination for a single EthAccount.         |
+| `GET`  | `/fury/evm/v1/storage/{address}/{key}`          | Get the balance of all coins for a single account                          |
+| `GET`  | `/fury/evm/v1/codes/{address}`                  | Get the balance of all coins for a single account                          |
+| `GET`  | `/fury/evm/v1/params`                           | Get the parameters of x/evm module                                         |
+| `GET`  | `/fury/evm/v1/eth_call`                         | Implements the eth_call rpc api                                            |
+| `GET`  | `/fury/evm/v1/estimate_gas`                     | Implements the eth_estimateGas rpc api                                     |
+| `GET`  | `/fury/evm/v1/trace_tx`                         | Implements the debug_traceTransaction rpc api                              |
+| `GET`  | `/fury/evm/v1/trace_block`                      | Implements the debug_traceBlockByNumber and debug_traceBlockByHash rpc api |
 
 ### Transactions
 
 | Verb   | Method                            | Description                     |
 | ------ | --------------------------------- | ------------------------------- |
-| `gRPC` | `ethermint.evm.v1.Msg/EthereumTx` | Submit an Ethereum transactions |
-| `POST` | `/ethermint/evm/v1/ethereum_tx`   | Submit an Ethereum transactions |
+| `gRPC` | `fury.evm.v1.Msg/EthereumTx` | Submit an Ethereum transactions |
+| `POST` | `/fury/evm/v1/ethereum_tx`   | Submit an Ethereum transactions |
