@@ -122,10 +122,10 @@ func init() {
 		panic(err)
 	}
 
-	DefaultNodeHome = filepath.Join(userHomeDir, ".ethermintd")
+	DefaultNodeHome = filepath.Join(userHomeDir, ".fury")
 }
 
-const appName = "ethermintd"
+const appName = "fury"
 
 var (
 	// DefaultNodeHome default home directories for the application daemon

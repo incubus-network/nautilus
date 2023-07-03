@@ -2,7 +2,7 @@
 
 set -e 
 
-if [ "$1" = 'ethermintd' ]; then
+if [ "$1" = 'fury' ]; then
     ./init.sh
 
     exec "$@" "--"
