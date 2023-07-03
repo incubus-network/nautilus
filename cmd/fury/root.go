@@ -32,15 +32,15 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
 
-	"github.com/evmos/ethermint/app"
-	ethermintclient "github.com/evmos/ethermint/client"
-	"github.com/evmos/ethermint/client/debug"
-	"github.com/evmos/ethermint/crypto/hd"
-	"github.com/evmos/ethermint/encoding"
-	"github.com/evmos/ethermint/server"
-	servercfg "github.com/evmos/ethermint/server/config"
-	srvflags "github.com/evmos/ethermint/server/flags"
-	ethermint "github.com/evmos/ethermint/types"
+	"github.com/incubus-network/ethermint/app"
+	ethermintclient "github.com/incubus-network/ethermint/client"
+	"github.com/incubus-network/ethermint/client/debug"
+	"github.com/incubus-network/ethermint/crypto/hd"
+	"github.com/incubus-network/ethermint/encoding"
+	"github.com/incubus-network/ethermint/server"
+	servercfg "github.com/incubus-network/ethermint/server/config"
+	srvflags "github.com/incubus-network/ethermint/server/flags"
+	ethermint "github.com/incubus-network/ethermint/types"
 )
 
 const EnvPrefix = "ETHERMINT"
@@ -83,8 +83,8 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 				return err
 			}
 
-			// FIXME: replace AttovBlack with bond denom
-			customAppTemplate, customAppConfig := servercfg.AppConfig(ethermint.AttovBlack)
+			// FIXME: replace AttoxFury with bond denom
+			customAppTemplate, customAppConfig := servercfg.AppConfig(ethermint.AttoxFury)
 
 			return sdkserver.InterceptConfigsPreRunHandler(cmd, customAppTemplate, customAppConfig, tmcfg.DefaultConfig())
 		},

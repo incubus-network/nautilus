@@ -48,13 +48,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/evmos/ethermint/crypto/hd"
-	"github.com/evmos/ethermint/encoding"
-	"github.com/evmos/ethermint/server/config"
-	ethermint "github.com/evmos/ethermint/types"
-	evmtypes "github.com/evmos/ethermint/x/evm/types"
+	"github.com/incubus-network/ethermint/crypto/hd"
+	"github.com/incubus-network/ethermint/encoding"
+	"github.com/incubus-network/ethermint/server/config"
+	ethermint "github.com/incubus-network/ethermint/types"
+	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
 
-	"github.com/evmos/ethermint/app"
+	"github.com/incubus-network/ethermint/app"
 
 	rollnode "github.com/rollkit/rollkit/node"
 )
@@ -125,8 +125,8 @@ func DefaultConfig() Config {
 		TimeoutCommit:     2 * time.Second,
 		ChainID:           fmt.Sprintf("ethermint_%d-1", tmrand.Int63n(9999999999999)+1),
 		NumValidators:     4,
-		BondDenom:         ethermint.AttovBlack,
-		MinGasPrices:      fmt.Sprintf("0.000006%s", ethermint.AttovBlack),
+		BondDenom:         ethermint.AttoxFury,
+		MinGasPrices:      fmt.Sprintf("0.000006%s", ethermint.AttoxFury),
 		AccountTokens:     sdk.TokensFromConsensusPower(1000, ethermint.PowerReduction),
 		StakingTokens:     sdk.TokensFromConsensusPower(500, ethermint.PowerReduction),
 		BondedTokens:      sdk.TokensFromConsensusPower(100, ethermint.PowerReduction),
@@ -471,7 +471,7 @@ func New(l Logger, baseDir string, cfg Config) (*Network, error) {
 			return nil, err
 		}
 
-		customAppTemplate, _ := config.AppConfig(ethermint.AttovBlack)
+		customAppTemplate, _ := config.AppConfig(ethermint.AttoxFury)
 		srvconfig.SetConfigTemplate(customAppTemplate)
 		srvconfig.WriteConfigFile(filepath.Join(nodeDir, "config/app.toml"), appCfg)
 

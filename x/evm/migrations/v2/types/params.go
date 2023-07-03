@@ -9,13 +9,13 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/evmos/ethermint/types"
+	"github.com/incubus-network/ethermint/types"
 )
 
 var _ paramtypes.ParamSet = &Params{}
 
 const (
-	DefaultEVMDenom = types.AttovBlack
+	DefaultEVMDenom = types.AttoxFury
 )
 
 // DefaultMinGasMultiplier is 0.5 or 50%

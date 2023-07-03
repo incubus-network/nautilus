@@ -4,7 +4,7 @@ FROM golang:alpine AS build-env
 ENV PACKAGES git build-base
 
 # Set working directory for the build
-WORKDIR /go/src/github.com/evmos/ethermint
+WORKDIR /go/src/github.com/incubus-network/ethermint
 
 # Install dependencies
 RUN apk add --update $PACKAGES
@@ -24,7 +24,7 @@ RUN apk add --update ca-certificates jq
 WORKDIR /
 
 # Copy over binaries from the build-env
-COPY --from=build-env /go/src/github.com/evmos/ethermint/build/fury /usr/bin/fury
+COPY --from=build-env /go/src/github.com/incubus-network/ethermint/build/fury /usr/bin/fury
 
 # Run fury by default
 CMD ["fury"]

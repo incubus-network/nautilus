@@ -17,9 +17,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	rpctypes "github.com/evmos/ethermint/rpc/types"
-	ethermint "github.com/evmos/ethermint/types"
-	evmtypes "github.com/evmos/ethermint/x/evm/types"
+	rpctypes "github.com/incubus-network/ethermint/rpc/types"
+	ethermint "github.com/incubus-network/ethermint/types"
+	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"

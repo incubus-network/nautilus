@@ -13,8 +13,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	evmtypes "github.com/evmos/ethermint/x/evm/types"
-	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
+	evmtypes "github.com/incubus-network/ethermint/x/evm/types"
+	feemarkettypes "github.com/incubus-network/ethermint/x/feemarket/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -237,7 +237,7 @@ func CheckTxFee(gasPrice *big.Int, gas uint64, cap float64) error {
 		return nil
 	}
 	totalfee := new(big.Float).SetInt(new(big.Int).Mul(gasPrice, new(big.Int).SetUint64(gas)))
-	// 1 vblack in 10^18 axfury
+	// 1 xfury in 10^18 axfury
 	oneToken := new(big.Float).SetInt(big.NewInt(params.Ether))
 	// quo = rounded(x/y)
 	feeEth := new(big.Float).Quo(totalfee, oneToken)

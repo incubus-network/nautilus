@@ -13,14 +13,14 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	ethlogger "github.com/ethereum/go-ethereum/eth/tracers/logger"
 	ethparams "github.com/ethereum/go-ethereum/params"
-	"github.com/evmos/ethermint/tests"
-	"github.com/evmos/ethermint/x/evm/statedb"
+	"github.com/incubus-network/ethermint/tests"
+	"github.com/incubus-network/ethermint/x/evm/statedb"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/evmos/ethermint/server/config"
-	ethermint "github.com/evmos/ethermint/types"
-	"github.com/evmos/ethermint/x/evm/types"
+	"github.com/incubus-network/ethermint/server/config"
+	ethermint "github.com/incubus-network/ethermint/types"
+	"github.com/incubus-network/ethermint/x/evm/types"
 )
 
 // Not valid Ethereum address
@@ -54,7 +54,7 @@ func (suite *KeeperTestSuite) TestQueryAccount() {
 		{
 			"success",
 			func() {
-				amt := sdk.Coins{ethermint.NewvBlackCoinInt64(100)}
+				amt := sdk.Coins{ethermint.NewxFuryCoinInt64(100)}
 				err := suite.app.BankKeeper.MintCoins(suite.ctx, types.ModuleName, amt)
 				suite.Require().NoError(err)
 				err = suite.app.BankKeeper.SendCoinsFromModuleToAccount(suite.ctx, types.ModuleName, suite.address.Bytes(), amt)
@@ -195,7 +195,7 @@ func (suite *KeeperTestSuite) TestQueryBalance() {
 		{
 			"success",
 			func() {
-				amt := sdk.Coins{ethermint.NewvBlackCoinInt64(100)}
+				amt := sdk.Coins{ethermint.NewxFuryCoinInt64(100)}
 				err := suite.app.BankKeeper.MintCoins(suite.ctx, types.ModuleName, amt)
 				suite.Require().NoError(err)
 				err = suite.app.BankKeeper.SendCoinsFromModuleToAccount(suite.ctx, types.ModuleName, suite.address.Bytes(), amt)
