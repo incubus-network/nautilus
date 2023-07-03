@@ -78,7 +78,7 @@ init_func() {
     "$PWD"/build/nautid init $MONIKER --chain-id $CHAINID --home "$DATA_DIR$i"
     echo "prepare genesis: Allocate genesis accounts"
     "$PWD"/build/nautid add-genesis-account \
-    "$("$PWD"/build/nautid keys show "$KEY$i" -a --home "$DATA_DIR$i" --keyring-backend test)" 1000000000000000000avblack,1000000000000000000stake \
+    "$("$PWD"/build/nautid keys show "$KEY$i" -a --home "$DATA_DIR$i" --keyring-backend test)" 1000000000000000000axfury,1000000000000000000stake \
     --home "$DATA_DIR$i" --keyring-backend test
     echo "prepare genesis: Sign genesis transaction"
     "$PWD"/build/nautid gentx $KEY"$i" 1000000000000000000stake --keyring-backend test --home "$DATA_DIR$i" --keyring-backend test --chain-id $CHAINID

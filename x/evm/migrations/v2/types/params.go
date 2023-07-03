@@ -15,7 +15,7 @@ import (
 var _ paramtypes.ParamSet = &Params{}
 
 const (
-	DefaultEVMDenom = types.AttovBlack
+	DefaultEVMDenom = types.AttoxFury
 )
 
 // DefaultMinGasMultiplier is 0.5 or 50%

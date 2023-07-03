@@ -16,17 +16,17 @@ make build-ethermint
 # Set moniker and chain-id for Ethermint (Moniker can be anything, chain-id must be an integer)
 "$PWD"/build/nautid init $MONIKER --chain-id $CHAINID
 
-# Change parameter token denominations to avblack
+# Change parameter token denominations to axfury
 cat $HOME/.ethermint/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="stake"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
-cat $HOME/.ethermint/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="avblack"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
-cat $HOME/.ethermint/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="avblack"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
-cat $HOME/.ethermint/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="avblack"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
+cat $HOME/.ethermint/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="axfury"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
+cat $HOME/.ethermint/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="axfury"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
+cat $HOME/.ethermint/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="axfury"' > $HOME/.ethermint/config/tmp_genesis.json && mv $HOME/.ethermint/config/tmp_genesis.json $HOME/.ethermint/config/genesis.json
 
 # Allocate genesis accounts (cosmos formatted addresses)
-"$PWD"/build/nautid add-genesis-account "$("$PWD"/build/nautid keys show "$KEY" -a --keyring-backend test)" 100000000000000000000avblack,10000000000000000000stake --keyring-backend test
+"$PWD"/build/nautid add-genesis-account "$("$PWD"/build/nautid keys show "$KEY" -a --keyring-backend test)" 100000000000000000000axfury,10000000000000000000stake --keyring-backend test
 
 # Sign genesis transaction
-"$PWD"/build/nautid gentx $KEY 10000000000000000000stake --amount=100000000000000000000avblack --keyring-backend test --chain-id $CHAINID
+"$PWD"/build/nautid gentx $KEY 10000000000000000000stake --amount=100000000000000000000axfury --keyring-backend test --chain-id $CHAINID
 
 # Collect genesis tx
 "$PWD"/build/nautid collect-gentxs

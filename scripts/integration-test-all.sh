@@ -72,7 +72,7 @@ init_func() {
     "$PWD"/build/nautid keys add $KEY"$i" --keyring-backend test --home "$DATA_DIR$i" --no-backup --algo "eth_secp256k1"
     "$PWD"/build/nautid init $MONIKER --chain-id $CHAINID --home "$DATA_DIR$i"
     "$PWD"/build/nautid add-genesis-account \
-    "$("$PWD"/build/nautid keys show "$KEY$i" --keyring-backend test -a --home "$DATA_DIR$i")" 1000000000000000000avblack,1000000000000000000stake \
+    "$("$PWD"/build/nautid keys show "$KEY$i" --keyring-backend test -a --home "$DATA_DIR$i")" 1000000000000000000axfury,1000000000000000000stake \
     --keyring-backend test --home "$DATA_DIR$i"
     "$PWD"/build/nautid gentx "$KEY$i" 1000000000000000000stake --chain-id $CHAINID --keyring-backend test --home "$DATA_DIR$i"
     "$PWD"/build/nautid collect-gentxs --home "$DATA_DIR$i"

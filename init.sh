@@ -30,11 +30,11 @@ if [[ ! -f "$GENESIS_FILE" ]]; then
   # Set moniker and chain-id for Ethermint (Moniker can be anything, chain-id must be an integer)
   nautid init $MONIKER --chain-id $CHAINID
 
-  # Change parameter token denominations to avblack
-  cat $HOME/.nautid/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
-  cat $HOME/.nautid/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
-  cat $HOME/.nautid/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
-  cat $HOME/.nautid/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="avblack"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
+  # Change parameter token denominations to axfury
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="axfury"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="axfury"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["gov"]["deposit_params"]["min_deposit"][0]["denom"]="axfury"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
+  cat $HOME/.nautid/config/genesis.json | jq '.app_state["mint"]["params"]["mint_denom"]="axfury"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
 
   # increase block time (?)
   cat $HOME/.nautid/config/genesis.json | jq '.consensus_params["block"]["time_iota_ms"]="1000"' > $HOME/.nautid/config/tmp_genesis.json && mv $HOME/.nautid/config/tmp_genesis.json $HOME/.nautid/config/genesis.json
@@ -74,10 +74,10 @@ if [[ ! -f "$GENESIS_FILE" ]]; then
   fi
 
   # Allocate genesis accounts (cosmos formatted addresses)
-  nautid add-genesis-account $KEY 100000000000000000000000000avblack --keyring-backend $KEYRING
+  nautid add-genesis-account $KEY 100000000000000000000000000axfury --keyring-backend $KEYRING
 
   # Sign genesis transaction
-  nautid gentx $KEY 1000000000000000000000avblack --keyring-backend $KEYRING --chain-id $CHAINID
+  nautid gentx $KEY 1000000000000000000000axfury --keyring-backend $KEYRING --chain-id $CHAINID
 
   # Collect genesis tx
   nautid collect-gentxs

@@ -42,14 +42,14 @@ cat $HOME/.nautid/config/genesis.json | jq '.consensus_params["block"]["max_gas"
 sed -i -e '/^timeout_commit =/ s/= .*/= "850ms"/' $HOME/.nautid/config/config.toml
 
 # Allocate genesis accounts (cosmos formatted addresses)
-nautid add-genesis-account "$(nautid keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-nautid add-genesis-account "$(nautid keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-nautid add-genesis-account "$(nautid keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-nautid add-genesis-account "$(nautid keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
-nautid add-genesis-account "$(nautid keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000avblack,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000axfury,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER1_KEY -a --keyring-backend test)" 1000000000000000000000axfury,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER2_KEY -a --keyring-backend test)" 1000000000000000000000axfury,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER3_KEY -a --keyring-backend test)" 1000000000000000000000axfury,1000000000000000000stake --keyring-backend test
+nautid add-genesis-account "$(nautid keys show $USER4_KEY -a --keyring-backend test)" 1000000000000000000000axfury,1000000000000000000stake --keyring-backend test
 
 # Sign genesis transaction
-nautid gentx $VAL_KEY 1000000000000000000stake --amount=1000000000000000000000avblack --chain-id $CHAINID --keyring-backend test
+nautid gentx $VAL_KEY 1000000000000000000stake --amount=1000000000000000000000axfury --chain-id $CHAINID --keyring-backend test
 
 # Collect genesis tx
 nautid collect-gentxs

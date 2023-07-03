@@ -83,8 +83,8 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 				return err
 			}
 
-			// FIXME: replace AttovBlack with bond denom
-			customAppTemplate, customAppConfig := servercfg.AppConfig(ethermint.AttovBlack)
+			// FIXME: replace AttoxFury with bond denom
+			customAppTemplate, customAppConfig := servercfg.AppConfig(ethermint.AttoxFury)
 
 			return sdkserver.InterceptConfigsPreRunHandler(cmd, customAppTemplate, customAppConfig, tmcfg.DefaultConfig())
 		},

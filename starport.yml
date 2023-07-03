@@ -1,18 +1,18 @@
 accounts:
   - name: alice
-    coins: ["100000000uatom", "100000000000000000000avblack"]
+    coins: ["100000000uatom", "100000000000000000000axfury"]
   - name: bob
-    coins: ["5000000000000avblack"]
+    coins: ["5000000000000axfury"]
   - name: faucet
-    coins: ["1000000000000000000000000000avblack"]
+    coins: ["1000000000000000000000000000axfury"]
 validator:
   name: alice
-  staked: "100000000000000000000avblack"
+  staked: "100000000000000000000axfury"
 faucet:
   port: 4500
   name: "faucet"
-  coins: ["1000000000000000000000000000avblack"]
-  coins_max: ["100000000avblack"]
+  coins: ["1000000000000000000000000000axfury"]
+  coins_max: ["100000000axfury"]
 build:
   binary: "nautid"
 init:
@@ -28,18 +28,18 @@ genesis:
   app_state:
     staking:
       params:
-        bond_denom: "avblack"
+        bond_denom: "axfury"
     mint:
       params:
-        mint_denom: "avblack"
+        mint_denom: "axfury"
     crisis:
       constant_fee:
-        denom: "avblack"
+        denom: "axfury"
     gov:
       deposit_params:
         min_deposit:
           - amount: "10000000"
-            denom: "avblack"
+            denom: "axfury"
     evm:
       params:
-        evm_denom: "avblack"
+        evm_denom: "axfury"
