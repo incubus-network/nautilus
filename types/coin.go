@@ -9,17 +9,17 @@ import (
 )
 
 const (
-	// AttoPhoton defines the default coin denomination used in Ethermint in:
+	// AttovBlack defines the default coin denomination used in Ethermint in:
 	//
 	// - Staking parameters: denomination used as stake in the dPoS chain
 	// - Mint parameters: denomination minted due to fee distribution rewards
 	// - Governance parameters: denomination used for spam prevention in proposal deposits
 	// - Crisis parameters: constant fee denomination used for spam prevention to check broken invariant
 	// - EVM parameters: denomination used for running EVM state transitions in Ethermint.
-	AttoPhoton string = "aphoton"
+	AttovBlack string = "avblack"
 
-	// BaseDenomUnit defines the base denomination unit for Photons.
-	// 1 photon = 1x10^{BaseDenomUnit} aphoton
+	// BaseDenomUnit defines the base denomination unit for vBlacks.
+	// 1 vblack = 1x10^{BaseDenomUnit} avblack
 	BaseDenomUnit = 18
 
 	// DefaultGasPrice is default gas price for evm transactions
@@ -29,20 +29,20 @@ const (
 // PowerReduction defines the default power reduction value for staking
 var PowerReduction = sdkmath.NewIntFromBigInt(new(big.Int).Exp(big.NewInt(10), big.NewInt(BaseDenomUnit), nil))
 
-// NewPhotonCoin is a utility function that returns an "aphoton" coin with the given sdkmath.Int amount.
+// NewvBlackCoin is a utility function that returns an "avblack" coin with the given sdkmath.Int amount.
 // The function will panic if the provided amount is negative.
-func NewPhotonCoin(amount sdkmath.Int) sdk.Coin {
-	return sdk.NewCoin(AttoPhoton, amount)
+func NewvBlackCoin(amount sdkmath.Int) sdk.Coin {
+	return sdk.NewCoin(AttovBlack, amount)
 }
 
-// NewPhotonDecCoin is a utility function that returns an "aphoton" decimal coin with the given sdkmath.Int amount.
+// NewvBlackDecCoin is a utility function that returns an "avblack" decimal coin with the given sdkmath.Int amount.
 // The function will panic if the provided amount is negative.
-func NewPhotonDecCoin(amount sdkmath.Int) sdk.DecCoin {
-	return sdk.NewDecCoin(AttoPhoton, amount)
+func NewvBlackDecCoin(amount sdkmath.Int) sdk.DecCoin {
+	return sdk.NewDecCoin(AttovBlack, amount)
 }
 
-// NewPhotonCoinInt64 is a utility function that returns an "aphoton" coin with the given int64 amount.
+// NewvBlackCoinInt64 is a utility function that returns an "avblack" coin with the given int64 amount.
 // The function will panic if the provided amount is negative.
-func NewPhotonCoinInt64(amount int64) sdk.Coin {
-	return sdk.NewInt64Coin(AttoPhoton, amount)
+func NewvBlackCoinInt64(amount int64) sdk.Coin {
+	return sdk.NewInt64Coin(AttovBlack, amount)
 }
