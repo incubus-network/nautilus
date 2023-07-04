@@ -16,7 +16,7 @@ func TestParseChainID(t *testing.T) {
 		expInt   *big.Int
 	}{
 		{
-			"valid chain-id, single digit", "ethermint_1-1", false, big.NewInt(1),
+			"valid chain-id, single digit", "highbury_1-1", false, big.NewInt(1),
 		},
 		{
 			"valid chain-id, multiple digits", "aragonchain_256-1", false, big.NewInt(256),
