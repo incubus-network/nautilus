@@ -62,8 +62,8 @@ build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 
 # process linker flags
 
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=ethermint \
-		  -X github.com/cosmos/cosmos-sdk/version.AppName=$(ETHERMINT_BINARY) \
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=nautid \
+		  -X github.com/cosmos/cosmos-sdk/version.AppName=nautid \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
 			-X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
@@ -138,7 +138,7 @@ docker-build:
 	# update old container
 	docker rm ethermint || true
 	# create a new container from the latest image
-	docker create --name ethermint -t -i tharsis/ethermint:latest ethermint
+	docker create --name nautilus -t -i fanfury/fanfury:latest ethermint
 	# move the binaries to the ./build directory
 	mkdir -p ./build/
 	docker cp ethermint:/usr/bin/nautid ./build/
@@ -164,7 +164,7 @@ build-all: tools build lint test
 ###                                Releasing                                ###
 ###############################################################################
 
-PACKAGE_NAME:=github.com/evmos/ethermint
+PACKAGE_NAME:=github.com/incubus-network/ethermint
 GOLANG_CROSS_VERSION = v1.18
 GOPATH ?= '$(HOME)/go'
 release-dry-run:
