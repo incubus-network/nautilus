@@ -17,7 +17,7 @@ import (
 
 const (
 	// DefaultGRPCAddress is the default address the gRPC server binds to.
-	DefaultGRPCAddress = "0.0.0.0:9900"
+	DefaultGRPCAddress = "0.0.0.0:9090"
 
 	// DefaultJSONRPCAddress is the default address the JSON-RPC server binds to.
 	DefaultJSONRPCAddress = "0.0.0.0:8545"
