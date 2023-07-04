@@ -1,4 +1,4 @@
 all:
-	docker build --no-cache --tag nautid/node ../.. -f ethermintnode/Dockerfile
+	docker build --no-cache --tag nautid/node ../.. -f nautid/Dockerfile
 
 .PHONY: all
